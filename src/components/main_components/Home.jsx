@@ -3,9 +3,11 @@ import './home.scss'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
+import MenuItem from '../module_components/MenuItem'
+
 export default function Home({ menuData }) {
 
-  console.log(menuData[0].name)
+
 
   return (
     <div className='home'>
@@ -16,8 +18,23 @@ export default function Home({ menuData }) {
           <h1>Featurd Deal</h1>
           <h2>Tom's Test Deal</h2>
       </Link>
-      <section className='home__popular-items'>
-        <h1>Popular Items</h1>
+      <section className='popular-items'>
+        <h1 className='popular-items__title'>
+          Popular Items
+        </h1>
+        <div className='popular-items__content'>
+          <MenuItem 
+            item = {menuData[0]} />
+          <MenuItem 
+            item = {menuData[0]} />
+          <MenuItem 
+            item = {menuData[0]} />
+          <MenuItem 
+            item = {menuData[0]} />
+          <MenuItem 
+            item = {menuData[0]} />
+          
+        </div>
       </section>
     </div>
   )

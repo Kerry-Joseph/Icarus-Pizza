@@ -30,9 +30,10 @@ $icarus-yellow: #EAC435;
   .home__featured-deal {
     border: black solid .15rem;
     width: 80%;
-    height: 10rem;
+    height: 15rem;
     position: relative;
     border-radius: .3rem;
+    margin: 1rem 0;
     h1 {
       position: absolute;
       margin: .5rem;
@@ -48,6 +49,42 @@ $icarus-yellow: #EAC435;
   }
 }
 
-.home__popular-items {
+.popular-items {
   width: 80%;
+
+  .popular-items__title {
+    margin: 0
+  }
+
+  .popular-items__content {
+    margin: 1rem 0 3rem 0;
+
+    @media (min-width: $md) {
+      display: grid;
+      grid-template-columns: auto 16.5% 16.5% auto;
+      grid-template-rows: 15rem 15rem;
+      gap: 1rem;      
+
+      :nth-child(2) {
+        grid-row: 1 / span 1;
+        grid-column: 2 / span 2;
+      }
+      :nth-child(4) {
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 2;
+      }
+      :nth-child(5) {
+        grid-row: 2 / span 1;
+        grid-column: 3 / span 2;
+      }
+    }
+
+    > * {
+      margin: 1rem 0;
+      @media (min-width: $md) {
+        margin: 0;
+      }
+    }
+  }
+
 }

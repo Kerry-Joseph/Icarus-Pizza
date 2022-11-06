@@ -1,0 +1,26 @@
+// media 
+$md: 768px;
+$lg: 1024px;
+
+// brand color
+$icarus-red: #B80C09;
+$icarus-yellow: #EAC435;
+
+.menu-item {
+  border: black .15rem solid;
+  border-radius: .4rem;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  h1 {
+    margin: 1rem;
+  }
+  p {
+    font-weight: 600;
+    margin: 1rem;
+    text-align: right;
+  }
+}
