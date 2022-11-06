@@ -33,12 +33,12 @@ export default function Nav() {
         <Link className='router-link' to='cart'>
           <li className='nav-dropdown--cart'>
             Cart 
-            <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart image" />
+            <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart" />
           </li>
         </Link>
         <li className='nav-dropdown--find-local'>
           Find Local Icarus
-          <img src="https://static.thenounproject.com/png/23179-200.png" alt="map dropper image" />
+          <img src="https://static.thenounproject.com/png/23179-200.png" alt="map dropper" />
         </li>
       </ul>
     )
