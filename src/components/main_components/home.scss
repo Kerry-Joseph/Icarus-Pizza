@@ -1,0 +1,53 @@
+// media 
+$md: 768px;
+$lg: 1024px;
+
+// brand color
+$icarus-red: #B80C09;
+$icarus-yellow: #EAC435;
+
+.home {
+  width: 100%;
+  max-width: 1280px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .home__order-now {
+    margin: 2rem;
+    padding: 1rem 5.5rem;
+    border-radius: .5rem;
+    border: black .15rem solid;
+    background: $icarus-yellow;
+    font-weight: 700;
+    font-size: 1.3rem;
+    @media (min-width: $md) {
+      display: none;
+    }
+  }
+
+  .home__featured-deal {
+    border: black solid .15rem;
+    width: 80%;
+    height: 10rem;
+    position: relative;
+    border-radius: .3rem;
+    h1 {
+      position: absolute;
+      margin: .5rem;
+      top: 0;
+      left: 0;
+    };
+    h2 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: .5rem;
+    }
+  }
+}
+
+.home__popular-items {
+  width: 80%;
+}
