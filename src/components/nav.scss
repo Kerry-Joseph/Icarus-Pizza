@@ -6,13 +6,23 @@ $lg: 1024px;
 $icarus-red: #B80C09;
 $icarus-yellow: #EAC435;
 
+.outer-nav {
+  background: $icarus-yellow;
+  border-bottom: black .2rem solid;
+  display: flex;
+  justify-content: center;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
 
+  width: 100%;
   position: relative;
   background: $icarus-yellow;
-  border-bottom: black .2rem solid;
+  @media (min-width: $md) {
+    max-width: 1280px;
+  }
 
   h1 {
     padding: 0;

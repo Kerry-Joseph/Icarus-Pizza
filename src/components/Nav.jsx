@@ -46,13 +46,15 @@ export default function Nav() {
 
   
   return (
-    <nav className="nav">
-      <img className='nav__logo' src="https://i.imgur.com/jTsNvXg.png" alt='icarus pizzs logo'/>
-      <h1>Icarus Pizza</h1>
-      <button className='nav__dropdown-button' onClick={showDropdown}>
-        <img src="https://cdn-icons-png.flaticon.com/512/58/58497.png" alt="dropdown button" />
-      </button>
-      <Dropdown />
-    </nav>
+    <div className='outer-nav'>
+      <nav className="nav">
+        <img className='nav__logo' src="https://i.imgur.com/jTsNvXg.png" alt='icarus pizzs logo'/>
+        <h1>Icarus Pizza</h1>
+        <button className='nav__dropdown-button' onClick={showDropdown}>
+          <img src="https://cdn-icons-png.flaticon.com/512/58/58497.png" alt="dropdown button" />
+        </button>
+        <Dropdown />
+      </nav>
+    </div>
   )
 }
