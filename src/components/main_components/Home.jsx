@@ -26,13 +26,13 @@ export default function Home({ menuData }) {
           <MenuItem 
             item = {menuData[0]} />
           <MenuItem 
-            item = {menuData[0]} />
+            item = {menuData[1]} />
           <MenuItem 
-            item = {menuData[0]} />
+            item = {menuData[2]} />
           <MenuItem 
-            item = {menuData[0]} />
+            item = {menuData[3]} />
           <MenuItem 
-            item = {menuData[0]} />
+            item = {menuData[4]} />
           
         </div>
       </section>

@@ -7,6 +7,7 @@ $icarus-red: #B80C09;
 $icarus-yellow: #EAC435;
 
 .menu-item {
+  position: relative;
   border: black .15rem solid;
   border-radius: .4rem;
   background-size: cover;
@@ -18,9 +19,16 @@ $icarus-yellow: #EAC435;
   h1 {
     margin: 1rem;
   }
-  p {
+  > p {
     font-weight: 600;
     margin: 1rem;
     text-align: right;
   }
+}
+
+.menu-item__order-options {
+  background: grey;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
