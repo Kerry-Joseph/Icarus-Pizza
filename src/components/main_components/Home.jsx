@@ -1,7 +1,6 @@
 import './home.scss'
 
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
 
 import MenuItem from '../module_components/MenuItem'
 
