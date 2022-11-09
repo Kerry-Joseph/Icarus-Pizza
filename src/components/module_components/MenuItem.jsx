@@ -1,6 +1,7 @@
 import './menuItem.scss'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import ExtraOptionsBasedOnItemType from './ExtraOptionsBasedOnItemType'
 
@@ -8,6 +9,7 @@ export default function MenuItem({ item }) {
   const [itemQuantity, setItemQuantity] = useState(0)
   const [itemPrice, setItemPrice] = useState(item.price)
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' ? 'Medium' : '6 Piece')
+  const [orderedState, setOrderedState] = useState(false)
 
   const minimumQunatity = () => itemQuantity === 0 ? true : false
   const maximumQuantity = () => itemQuantity === 10 ? true : false
@@ -20,53 +22,36 @@ export default function MenuItem({ item }) {
     }
   }
 
-  
-  // const parsed = JSON.parse(localStorage.cart)
-  
-  // // const addToCart = () => {
-  // //   localStorage.cart = JSON.stringify([[{
-  // //     type: item.itemType,
-  // //     name: item.name,
-  // //     size: sizeState,
-  // //     quantity: itemQuantity,
-  // //     price: itemPrice,
-  // //   }]])
-  // //   console.log(parsed)
-  // // }
+  const addToCart = () => {
+    if(localStorage.cart === ''){
+      localStorage.cart = JSON.stringify([{
+        type : item.itemType,
+        name : item.name,
+        size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
+        quantity : itemQuantity,
+        price : itemPrice * itemQuantity,
+        id : Math.random() * 10
+       }])
+       setOrderedState(true)
+    } else {
+      localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
+        type : item.itemType,
+        name : item.name,
+        size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
+        quantity : itemQuantity ,
+        price : itemPrice * itemQuantity,
+        id : Math.random() * 10
+      }])
+      setOrderedState(true)
+    }
+  }
 
-  // const addToCart = () => {
-  //   if(item.itemType === 'pizza' || item.itemType === 'wings'){
-  //     localStorage.cart = JSON.stringify( [[...JSON.parse(localStorage.cart), [{
-  //       type: item.itemType,
-  //       name: item.name,
-  //       size: sizeState,
-  //       quantity: itemQuantity,
-  //       price: itemPrice,
-  //     }]]])
-  //     console.log(parsed)
-  //   } else {
-  //     localStorage.cart = JSON.stringify( [[...JSON.parse(localStorage.cart), [{
-  //       type: item.itemType,
-  //       name: item.name,
-  //       quantity: itemQuantity,
-  //       price: itemPrice,
-  //     }]]])
-  //     console.log(parsed)
-  //   }
-  // }
 
-  // useEffect(() => {
-  //   localStorage.cart = ''
-  //   console.log(localStorage.cart)
-  // })
 
-  
-  return (
-    <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openOrderOptions}>
-      <h1>{item.name}</h1>
-      <p>{item.description}</p>
+  const NotOrdered = () => {
+    return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
-        <button className='order-options--add-to-cart' >
+        <button className='order-options--add-to-cart' onClick={addToCart}>
           add to cart
         </button>
         <div className='order-options--quantity-buttons'>
@@ -83,6 +68,30 @@ export default function MenuItem({ item }) {
           setItemPrice={setItemPrice} 
           setSizeState={setSizeState}/>
       </div>
+    )
+  }
+
+
+
+  const Ordered = () => {
+    return (
+      <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
+        <button onClick={() => {setOrderedState(false); setItemQuantity(0)}}>X</button>
+        <h1>ADDED!!</h1>
+        <Link to='/cart'>
+          go to cart
+        </Link>
+      </div>
+    )
+  }
+
+
+
+  return (
+    <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openOrderOptions}>
+      <h1>{item.name}</h1>
+      <p>{item.description}</p>
+      {!orderedState ? NotOrdered() : Ordered()}
     </div>
   )
 }
