@@ -38,7 +38,7 @@ export default function Cart() {
     }
   }
 
-  const Orders = () => {
+  const Orders = () => {  
     return parsedCart.map(item => (
       Order(item)
     ))

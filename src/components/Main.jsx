@@ -6,6 +6,7 @@ import Menu from './main_components/Menu'
 import Cart from './main_components/Cart'
 import Rewards from './main_components/Rewards'
 import Home from './main_components/Home'
+import DealPage from './main_components/Deal'
 
 import '../index.scss'
 
@@ -13,9 +14,9 @@ export default function Main() {
 
   // STATES ---
   const [menuData, setMenuData] = useState(null)
+  const [dealsData, setDealsData] = useState(null)
 
-
-  const { REACT_APP_API_MENU_URL } = process.env
+  const { REACT_APP_API_MENU_URL, REACT_APP_API_DEALS_URL } = process.env
 
   // API ---
   const fetchMenu = async() => {
@@ -28,8 +29,21 @@ export default function Main() {
     }
   }
 
+  const fetchDeals = async() => {
+    try {
+      const res = await fetch(REACT_APP_API_DEALS_URL)
+      const data = await res.json()
+      setDealsData(data)
+    } catch(err) {
+      console.log('failed to fetch deals')      
+    }
+  }
+
+
+
   useEffect(() => {
     fetchMenu()
+    fetchDeals()
   },[])
 
 
@@ -45,7 +59,7 @@ export default function Main() {
             <Menu />
           }/>
           <Route path='/deals' element={
-            <Deals />
+            <Deals deals = {dealsData}/>
           }/>
           <Route path='/rewards' element={
             <Rewards />
@@ -53,6 +67,9 @@ export default function Main() {
           <Route path='/cart' element={
             <Cart />
           }/>
+          <Route path='deals/:dealName' element={
+            <DealPage deals = {dealsData} menu = {menuData}/>
+          } />
         </Routes>
       </main>
     )  
@@ -66,9 +83,10 @@ export default function Main() {
     )
   }
 
+
   return (
       <>
-        {menuData ? loaded() : loading()}
+        {dealsData && menuData ? loaded() : loading()}
       </>
     )
 

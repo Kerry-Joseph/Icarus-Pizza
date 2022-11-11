@@ -5,18 +5,23 @@ import { Link } from 'react-router-dom'
 
 import ExtraOptionsBasedOnItemType from './ExtraOptionsBasedOnItemType'
 
-export default function MenuItem({ item }) {
+export default function MenuItemForDealPage({ item, setReqState, reqState}) {
   const [itemQuantity, setItemQuantity] = useState(0)
   const [itemPrice, setItemPrice] = useState(item.price)
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' ? 'Medium' : '6 Piece')
   const [orderedState, setOrderedState] = useState(false)
 
+  
+  
   const minimumQunatity = () => itemQuantity === 0 ? true : false
-  const maximumQuantity = () => itemQuantity === 10 ? true : false
+  const maximumQuantity = () => reqState.quantity === 0 ? true : false
 
   const openOrderOptions = () => {
     if(itemQuantity === 0){
       setItemQuantity(1)
+      setReqState(prev => (
+        {...prev, quantity : prev.quantity - 1 }
+      ))
     } else {
       return
     }
@@ -46,6 +51,19 @@ export default function MenuItem({ item }) {
     }
   }
 
+  const reqIncrease = () => {
+    setReqState(prev => (
+      {...prev, quantity : prev.quantity - 1 }
+    ))
+    console.log(reqState)
+  }
+
+  const reqDecrease = () => {
+    setReqState(prev => (
+      {...prev, quantity : prev.quantity + 1 }
+    ))
+  }
+
 
 
   const NotOrdered = () => {
@@ -55,11 +73,11 @@ export default function MenuItem({ item }) {
           add to cart
         </button>
         <div className='order-options--quantity-buttons'>
-          <button onClick={() => (setItemQuantity(prev => prev + 1))} disabled={maximumQuantity()}>
+          <button onClick={() => {setItemQuantity(prev => prev + 1); reqIncrease()} } disabled={maximumQuantity()}>
             +
           </button>
           <p>{itemQuantity}</p>
-          <button onClick={() => setItemQuantity(prev => prev - 1)} disabled={minimumQunatity()}>
+          <button onClick={() => {setItemQuantity(prev => prev - 1); reqDecrease()}} disabled={minimumQunatity()}>
             -
           </button>
         </div>
