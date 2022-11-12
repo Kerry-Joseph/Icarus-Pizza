@@ -6,7 +6,7 @@ import Menu from './main_components/Menu'
 import Cart from './main_components/Cart'
 import Rewards from './main_components/Rewards'
 import Home from './main_components/Home'
-import DealPage from './main_components/Deal'
+import DealPage from './main_components/DealPage'
 
 import '../index.scss'
 

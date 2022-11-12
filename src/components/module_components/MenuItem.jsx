@@ -30,7 +30,7 @@ export default function MenuItem({ item }) {
         size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
         quantity : itemQuantity,
         price : Math.round((itemPrice * itemQuantity) * 100)/100,
-        id : item._id
+        id : Math.random()
        }])
        setOrderedState(true)
     } else {
@@ -40,7 +40,7 @@ export default function MenuItem({ item }) {
         size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
         quantity : itemQuantity,
         price : Math.round((itemPrice * itemQuantity) * 100)/100,
-        id : item._id
+        id : Math.random()
       }])
       setOrderedState(true)
     }

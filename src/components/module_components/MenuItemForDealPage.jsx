@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 
 import ExtraOptionsBasedOnItemType from './ExtraOptionsBasedOnItemType'
 
-export default function MenuItemForDealPage({ item, setReqState, reqState}) {
+export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent}) {
   const [itemQuantity, setItemQuantity] = useState(0)
   const [itemPrice, setItemPrice] = useState(item.price)
-  const [sizeState, setSizeState] = useState(item.itemType === 'pizza' ? 'Medium' : '6 Piece')
+  const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? item.itemType === 'wings' ? '6 piece' : 'Medium' : '')
   const [orderedState, setOrderedState] = useState(false)
 
   
@@ -17,7 +17,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState}) {
   const maximumQuantity = () => reqState.quantity === 0 ? true : false
 
   const openOrderOptions = () => {
-    if(itemQuantity === 0){
+    if(itemQuantity === 0 && reqState.quantity > 0){
       setItemQuantity(1)
       setReqState(prev => (
         {...prev, quantity : prev.quantity - 1 }
@@ -27,27 +27,13 @@ export default function MenuItemForDealPage({ item, setReqState, reqState}) {
     }
   }
 
+  
   const addToCart = () => {
-    if(localStorage.cart === ''){
-      localStorage.cart = JSON.stringify([{
-        type : item.itemType,
-        name : item.name,
-        size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
-        quantity : itemQuantity,
-        price : Math.round((itemPrice * itemQuantity) * 100)/100,
-        id : item._id
-       }])
-       setOrderedState(true)
-    } else {
-      localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
-        type : item.itemType,
-        name : item.name,
-        size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
-        quantity : itemQuantity,
-        price : Math.round((itemPrice * itemQuantity) * 100)/100,
-        id : item._id
-      }])
+    if(reqState.quantity === 0){
+      dealContent.push(`${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`)
       setOrderedState(true)
+    } else {
+      return
     }
   }
 
@@ -55,7 +41,6 @@ export default function MenuItemForDealPage({ item, setReqState, reqState}) {
     setReqState(prev => (
       {...prev, quantity : prev.quantity - 1 }
     ))
-    console.log(reqState)
   }
 
   const reqDecrease = () => {
@@ -94,11 +79,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState}) {
   const Ordered = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
-        <button onClick={() => {setOrderedState(false); setItemQuantity(0)}}>X</button>
-        <h1>ADDED!!</h1>
-        <Link to='/cart'>
-          go to cart
-        </Link>
+        <h1 style={{color : 'white'}}>ADDED!!</h1>
       </div>
     )
   }

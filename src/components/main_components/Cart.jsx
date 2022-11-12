@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react" 
 
 export default function Cart() {
   const parsedCart = localStorage.cart ? JSON.parse(localStorage.cart) : []
@@ -17,7 +17,18 @@ export default function Cart() {
 
 
   const Order = (item) => {
-     if(item.type === 'pizza' || item.type === 'wings'){
+    if(item.type === 'deal'){
+      return(
+        <div key={item.id}>
+          <h1>{item.name} Deal</h1>
+          <p>{item.content.join(', ')}</p>
+          <p>{item.price}</p>
+          <button onClick={() => localStorage.cart = ''}>clear</button>
+          <button onClick={() => deleteItem(item.id)}>delete</button>
+        </div>
+      )
+    }
+    if(item.type === 'pizza' || item.type === 'wings'){
       return(
         <div key={item.id}>
           <h1><span>{item.size} |</span> {item.name}</h1>
@@ -33,6 +44,8 @@ export default function Cart() {
           <h1>{item.name}</h1>
           <p>{item.quantity}</p>
           <p>{item.price}</p>
+          <button onClick={() => localStorage.cart = ''}>clear</button>
+          <button onClick={() => deleteItem(item.id)}>delete</button>
         </div>
       )
     }
