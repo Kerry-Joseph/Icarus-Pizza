@@ -1,22 +1,19 @@
 import './menuItem.scss'
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 
 import ExtraOptionsBasedOnItemType from './ExtraOptionsBasedOnItemType'
 
 export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent}) {
   const [itemQuantity, setItemQuantity] = useState(0)
-  const [itemPrice, setItemPrice] = useState(item.price)
-  const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? item.itemType === 'wings' ? '6 piece' : 'Medium' : '')
+  const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? (item.itemType === 'wings' ? '6 piece' : 'Medium') : '')
   const [orderedState, setOrderedState] = useState(false)
 
-  
-  
   const minimumQunatity = () => itemQuantity === 0 ? true : false
   const maximumQuantity = () => reqState.quantity === 0 ? true : false
 
-  const openOrderOptions = () => {
+
+  const openItemOptions = () => {
     if(itemQuantity === 0 && reqState.quantity > 0){
       setItemQuantity(1)
       setReqState(prev => (
@@ -28,7 +25,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }
 
   
-  const addToCart = () => {
+  const addDealToCart = () => {
     if(reqState.quantity === 0){
       dealContent.push(`${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`)
       setOrderedState(true)
@@ -36,6 +33,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
       return
     }
   }
+
 
   const reqIncrease = () => {
     setReqState(prev => (
@@ -51,10 +49,10 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
 
 
 
-  const NotOrdered = () => {
+  const NotAddedToDealCart = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
-        <button className='order-options--add-to-cart' onClick={addToCart}>
+        <button className='order-options--add-to-cart' onClick={addDealToCart}>
           add to cart
         </button>
         <div className='order-options--quantity-buttons'>
@@ -68,7 +66,6 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
         </div>
         <ExtraOptionsBasedOnItemType 
           item={item} 
-          setItemPrice={setItemPrice} 
           setSizeState={setSizeState}/>
       </div>
     )
@@ -76,7 +73,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
 
 
 
-  const Ordered = () => {
+  const AddedToDealCart = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <h1 style={{color : 'white'}}>ADDED!!</h1>
@@ -87,10 +84,10 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
 
 
   return (
-    <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openOrderOptions}>
+    <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openItemOptions}>
       <h1>{item.name}</h1>
       <p>{item.description}</p>
-      {!orderedState ? NotOrdered() : Ordered()}
+      {!orderedState ? NotAddedToDealCart() : AddedToDealCart()}
     </div>
   )
 }

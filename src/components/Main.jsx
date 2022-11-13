@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-import Deals from './main_components/Deals'
 import Menu from './main_components/Menu'
 import Cart from './main_components/Cart'
 import Rewards from './main_components/Rewards'
+import Deals from './main_components/Deals'
 import Home from './main_components/Home'
-import DealPage from './main_components/DealPage'
+import SelectedDeal from './main_components/SelectedDeal'
 
 import '../index.scss'
 
@@ -47,33 +47,44 @@ export default function Main() {
   },[])
 
 
+
   // LOADED RETURN ---
   const loaded = () => {
     return (
       <main className='main'>
         <Routes>
           <Route path='/' element={
-            <Home menuData = {menuData} />
+            <Home 
+              menuData = {menuData} />
           }/>
+          
           <Route path='/menu' element={
             <Menu />
           }/>
+
           <Route path='/deals' element={
-            <Deals deals = {dealsData}/>
+            <Deals 
+              deals = {dealsData}/>
           }/>
-          <Route path='/rewards' element={
+
+          <Route path='/rewards'   element={
             <Rewards />
           }/>
+
           <Route path='/cart' element={
             <Cart />
           }/>
+
           <Route path='deals/:dealName' element={
-            <DealPage deals = {dealsData} menu = {menuData}/>
-          } />
+            <SelectedDeal 
+              deals = {dealsData} 
+              menu = {menuData}/>
+          }/>
         </Routes>
       </main>
     )  
   }
+
 
   const loading = () => {
     return (

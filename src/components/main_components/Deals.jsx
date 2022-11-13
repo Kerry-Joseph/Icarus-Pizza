@@ -1,13 +1,7 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Deals({ deals })  {
   
-  const DealsContainer = () => {
-    return deals.map(deal =>( 
-      <DealComponent deal = {deal} key = {deal._id} />
-    ))
-  }
   const DealComponent = ({ deal }) => {
     return (
       <Link to={`/deals/${deal.name}`}>
@@ -17,17 +11,18 @@ export default function Deals({ deals })  {
       </Link>
     )
   }
-
   
+  
+  const DealsContainer = () => {
+    return deals.map(deal =>( 
+      <DealComponent deal = {deal} key = {deal._id} />
+    ))
+  }
 
-  // useEffect(() => {
-  //   console.log(deals)
-  // }, [])
 
   return (
     <>
-      <DealsContainer />
-      
+      <DealsContainer />      
     </>
   )
   
