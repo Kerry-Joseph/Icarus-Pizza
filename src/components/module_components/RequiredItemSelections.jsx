@@ -1,7 +1,8 @@
+import { useEffect } from "react"
 import { useState } from "react"  
 import MenuItemForDealPage from './MenuItemForDealPage'
 
-export default function RequiredItemSelections({selectedDealType, dealContent, selectedDeal, menu}){
+export default function RequiredItemSelections({selectedDealType, dealContent, selectedDeal, menu, setItemsNeededForCart}){
   
   const currentReqArr = selectedDeal.requirements.filter(req => req.itemType === selectedDealType)
   const currentReq = currentReqArr[0]
@@ -9,6 +10,8 @@ export default function RequiredItemSelections({selectedDealType, dealContent, s
   const [reqState, setReqState] = useState(currentReq)
   
 
+  
+  
   let itemRequiringUserInput = undefined
 
 
@@ -42,7 +45,8 @@ export default function RequiredItemSelections({selectedDealType, dealContent, s
         key={item._id} 
         setReqState={setReqState} 
         reqState={reqState}
-        dealContent={dealContent}/>
+        dealContent={dealContent}
+        setItemsNeededForCart={setItemsNeededForCart}/>
     ))
   }
 }

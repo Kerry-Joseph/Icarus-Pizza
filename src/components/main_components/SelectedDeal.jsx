@@ -1,5 +1,7 @@
 import RequiredItemSelections from "../module_components/RequiredItemSelections"
-import { useParams, Link } from "react-router-dom"
+import { useParams, Navigate } from "react-router-dom"
+import { useState } from "react"
+
 
 
 export default function SelectedDeal({ deals, menu }) {
@@ -11,30 +13,54 @@ export default function SelectedDeal({ deals, menu }) {
   const selectedDeal = selectedDealInAnArray[0]
   
   // selected items in deal (deal cart)
-  const dealContent = []
+  let dealContent = []
 
-  
+  const [itemsNeededForCart,  setItemsNeededForCart] = useState({
+    pizza : true,
+    wings : true,
+    bread : true,
+    side : true,
+    dessert : true,
+    beverage : true
+  })
+
+  const [gtg, setGtg] = useState(false)
+
+
+  console.log(dealContent)
   const addDealToCart = () => {
-    if(localStorage.cart === ''){
-      localStorage.cart = JSON.stringify([{
-        type : 'deal',
-        name : dealName,
-        content : dealContent, 
-        price : selectedDeal.price,
-        id : Math.random()
+    if(!Object.values(itemsNeededForCart).includes(false)){
+      if(localStorage.cart === ''){
+        localStorage.cart = JSON.stringify([{
+          type : 'deal',
+          name : dealName,
+          content : dealContent, 
+          price : selectedDeal.price,
+          id : Math.random()
+          }])
+          setGtg(true)
+      } else {
+        localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
+          type : 'deal',
+          name : dealName,
+          content : dealContent,
+          price : selectedDeal.price,
+          id : Math.random()
         }])
+        setGtg(true)
+      } 
     } else {
-      localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
-        type : 'deal',
-        name : dealName,
-        content : dealContent,
-        price : selectedDeal.price,
-        id : Math.random()
-      }])
+      alert('required items needed')
     }
   }
   
-
+  const RedirectToCart = () => {
+    if(gtg === true){
+      return <Navigate to='/cart' replace={true} />
+    } else {
+      return
+    }
+  }
 
 
   return (
@@ -44,25 +70,26 @@ export default function SelectedDeal({ deals, menu }) {
       </h1>
       <h2>Pizza</h2>
       <RequiredItemSelections 
-        selectedDealType="pizza" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu}/>
+        selectedDealType="pizza" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
       <h2>Wings</h2>
       <RequiredItemSelections 
-        selectedDealType="wings" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu}/>
+        selectedDealType="wings" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
       <h2>Bread</h2>
       <RequiredItemSelections 
-        selectedDealType="bread" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu}/>
+        selectedDealType="bread" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
       <h2>Sides</h2>
       <RequiredItemSelections 
-        selectedDealType="side" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu}/>
+        selectedDealType="side" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
       <h2>Dessert</h2>
       <RequiredItemSelections 
-        selectedDealType="dessert" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu}/>
+        selectedDealType="dessert" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
       <h2>Beverages</h2>
       <RequiredItemSelections 
-        selectedDealType="beverage" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu}/>
-      <Link to='/cart' onClick={addDealToCart}>
+        selectedDealType="beverage" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
+      <RedirectToCart />
+      <button onClick={addDealToCart}>
         Add to cart
-      </Link>
+      </button>
     </div>
   )
 }

@@ -1,13 +1,15 @@
 import './menuItem.scss'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import ExtraOptionsBasedOnItemType from './ExtraOptionsBasedOnItemType'
 
-export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent}) {
+
+export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent, setItemsNeededForCart}) {
   const [itemQuantity, setItemQuantity] = useState(0)
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? (item.itemType === 'wings' ? '6 piece' : 'Medium') : '')
   const [orderedState, setOrderedState] = useState(false)
+  const [itemPrice, setItemPrice] = useState(item.price)
 
   const minimumQunatity = () => itemQuantity === 0 ? true : false
   const maximumQuantity = () => reqState.quantity === 0 ? true : false
@@ -23,8 +25,23 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
       return
     }
   }
+// bookmark ---------------------
+  useEffect(() => {
+    if(reqState.quantity > 0){
+      setItemsNeededForCart(prev => (
+        { ...prev, [reqState.itemType] : false}
+      ))
+    } else if(orderedState === true){
+      setItemsNeededForCart(prev => (
+        { ...prev, [reqState.itemType] : true}
+      ))
+    }
+    
+  }, [reqState])
 
   
+
+ 
   const addDealToCart = () => {
     if(reqState.quantity === 0){
       dealContent.push(`${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`)
@@ -66,6 +83,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
         </div>
         <ExtraOptionsBasedOnItemType 
           item={item} 
+          setItemPrice={setItemPrice} 
           setSizeState={setSizeState}/>
       </div>
     )
