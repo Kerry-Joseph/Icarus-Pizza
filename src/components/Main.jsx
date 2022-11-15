@@ -7,6 +7,7 @@ import Rewards from './main_components/Rewards'
 import Deals from './main_components/Deals'
 import Home from './main_components/Home'
 import SelectedDeal from './main_components/SelectedDeal'
+import CreatePizza from './main_components/CreatePizza'
 
 import '../index.scss'
 
@@ -79,6 +80,10 @@ export default function Main() {
             <SelectedDeal 
               deals = {dealsData} 
               menu = {menuData}/>
+          }/>
+          
+          <Route path='/create-pizza' element={
+            <CreatePizza />
           }/>
         </Routes>
       </main>
