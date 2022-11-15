@@ -8,12 +8,11 @@ export default function Cart() {
 
   
 
- 
-
   const deleteItem = (id) => {
     const cartWithoutDeletedItem = JSON.parse(localStorage.cart).filter(item => item.id !== id)
     localStorage.cart = JSON.stringify(cartWithoutDeletedItem)
   }
+
 
 
   const Order = (item) => {
@@ -51,12 +50,17 @@ export default function Cart() {
     }
   }
 
+
+
   const Orders = () => {  
     return parsedCart.map(item => (
       Order(item)
     ))
   }
 
+
+
+  
   const getSubtotal = () => {
     setSubtotal(0)
     parsedCart.forEach(item => {
