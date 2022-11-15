@@ -1,35 +1,32 @@
-import { useEffect } from "react"
 import { useState } from "react"  
 import MenuItemForDealPage from './MenuItemForDealPage'
 
-export default function RequiredItemSelections({selectedDealType, dealContent, selectedDeal, menu, setItemsNeededForCart}){
+// req === REQUIREMENT -+-+-+-+-+-
+export default function RequiredItemSelections({selectedDealType, dealContent, selectedDeal, menu, setItemsNeededForDeal ,itemsNeededForDeal}){
   
   const currentReqArr = selectedDeal.requirements.filter(req => req.itemType === selectedDealType)
   const currentReq = currentReqArr[0]
   
   const [reqState, setReqState] = useState(currentReq)
   
-
-  
-  
   let itemRequiringUserInput = undefined
 
 
-  // add required deal item to deal cart if they dont require user input
+  // add required deal item to deal content if it doesn't require user input
   selectedDeal.requirements.forEach(req => {
-    const menuItemsRequiedForItemType = menu.filter(item => item.itemType === req.itemType)
-    const selectedPizzaOrWingsCartString = `${req.size} ${req.name}${req.quantity > 1 ? ` x${req.quantity}` : ''}`
-    const selectedItemCartString = `${req.size ? `${req.size} ` : ''}${req.name}${req.quantity > 1 ? ` x${req.quantity}` : ''}`
+    const menuItemsRequiedForDeal = menu.filter(item => item.itemType === req.itemType)
+    const cartStringForPizzaOrWings = `${req.size} ${req.name}${req.quantity > 1 ? ` x${req.quantity}` : ''}`
+    const cartStringForOtherItems = `${req.size ? `${req.size} ` : ''}${req.name}${req.quantity > 1 ? ` x${req.quantity}` : ''}`
     if(req.itemType !== selectedDealType){
       return
     } else if(req.name && req.size){
-      if(!dealContent.includes(selectedPizzaOrWingsCartString))
-        dealContent.push(selectedPizzaOrWingsCartString)
+      if(!dealContent.includes(cartStringForPizzaOrWings))
+        dealContent.push(cartStringForPizzaOrWings)
     } else if((req.itemType !== "wings" && req.name) || (req.itemType !== "pizza" && req.name)){
-      if(!dealContent.includes(selectedItemCartString))
-        dealContent.push(selectedItemCartString)
+      if(!dealContent.includes(cartStringForOtherItems))
+        dealContent.push(cartStringForOtherItems)
     } else {
-      itemRequiringUserInput = menuItemsRequiedForItemType
+      itemRequiringUserInput = menuItemsRequiedForDeal
     }
   })
 
@@ -46,7 +43,8 @@ export default function RequiredItemSelections({selectedDealType, dealContent, s
         setReqState={setReqState} 
         reqState={reqState}
         dealContent={dealContent}
-        setItemsNeededForCart={setItemsNeededForCart}/>
+        setItemsNeededForDeal={setItemsNeededForDeal}
+        itemsNeededForDeal={itemsNeededForDeal}/>
     ))
   }
 }

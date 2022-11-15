@@ -4,16 +4,17 @@ import { useState, useEffect } from 'react'
 
 import ExtraOptionsBasedOnItemType from './ExtraOptionsBasedOnItemType'
 
-
-export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent, setItemsNeededForCart}) {
+// req === REQUIREMENT -+-+-+-+-+-
+export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent, setItemsNeededForDeal, itemsNeededForDeal}) {
   const [itemQuantity, setItemQuantity] = useState(0)
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? (item.itemType === 'wings' ? '6 piece' : 'Medium') : '')
-  const [orderedState, setOrderedState] = useState(false)
-  const [itemPrice, setItemPrice] = useState(item.price)
+  const [, setItemPrice] = useState(item.price)
+  
 
   const minimumQunatity = () => itemQuantity === 0 ? true : false
   const maximumQuantity = () => reqState.quantity === 0 ? true : false
 
+  const itemType = reqState.itemType
 
   const openItemOptions = () => {
     if(itemQuantity === 0 && reqState.quantity > 0){
@@ -25,27 +26,29 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
       return
     }
   }
-// bookmark ---------------------
+
   useEffect(() => {
     if(reqState.quantity > 0){
-      setItemsNeededForCart(prev => (
-        { ...prev, [reqState.itemType] : false}
-      ))
-    } else if(orderedState === true){
-      setItemsNeededForCart(prev => (
-        { ...prev, [reqState.itemType] : true}
+      setItemsNeededForDeal(prev => (
+        { ...prev, [itemType] : false}
       ))
     }
-    
-  }, [reqState])
+  }, [reqState.quantity])
 
+  const userSelectedItemCartString = `${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`
+
+  useEffect(() => {
+    if(itemsNeededForDeal[itemType] === true)
+      dealContent.push(userSelectedItemCartString)
+  }, [itemsNeededForDeal[itemType]])
+  
   
 
- 
-  const addDealToCart = () => {
+  const addToDealContent = () => {
     if(reqState.quantity === 0){
-      dealContent.push(`${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`)
-      setOrderedState(true)
+      setItemsNeededForDeal(prev => (
+        { ...prev, [itemType] : true}
+      ))
     } else {
       return
     }
@@ -66,10 +69,10 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
 
 
 
-  const NotAddedToDealCart = () => {
+  const NotAddedToDealContent = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
-        <button className='order-options--add-to-cart' onClick={addDealToCart}>
+        <button className='order-options--add-to-cart' onClick={addToDealContent}>
           add to cart
         </button>
         <div className='order-options--quantity-buttons'>
@@ -83,15 +86,16 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
         </div>
         <ExtraOptionsBasedOnItemType 
           item={item} 
-          setItemPrice={setItemPrice} 
-          setSizeState={setSizeState}/>
+          setSizeState={setSizeState}
+          setItemPrice={setItemPrice}/>
+          
       </div>
     )
   }
 
 
 
-  const AddedToDealCart = () => {
+  const AddedToDealContent = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <h1 style={{color : 'white'}}>ADDED!!</h1>
@@ -100,12 +104,11 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }
 
 
-
   return (
     <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openItemOptions}>
       <h1>{item.name}</h1>
       <p>{item.description}</p>
-      {!orderedState ? NotAddedToDealCart() : AddedToDealCart()}
+      {!itemsNeededForDeal[itemType] ? NotAddedToDealContent() : AddedToDealContent()}
     </div>
   )
 }

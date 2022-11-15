@@ -1,7 +1,6 @@
 import RequiredItemSelections from "../module_components/RequiredItemSelections"
 import { useParams, Navigate } from "react-router-dom"
-import { useState } from "react"
-
+import { useState, useRef } from "react"
 
 
 export default function SelectedDeal({ deals, menu }) {
@@ -13,28 +12,26 @@ export default function SelectedDeal({ deals, menu }) {
   const selectedDeal = selectedDealInAnArray[0]
   
   // selected items in deal (deal cart)
-  let dealContent = []
+  const dealContent = useRef([])
 
-  const [itemsNeededForCart,  setItemsNeededForCart] = useState({
-    pizza : true,
-    wings : true,
-    bread : true,
-    side : true,
-    dessert : true,
-    beverage : true
+  const [itemsNeededForDeal,  setItemsNeededForDeal] = useState({
+    pizza : null,
+    wings : null,
+    bread : null,
+    side : null,
+    dessert : null,
+    beverage : null
   })
 
   const [gtg, setGtg] = useState(false)
-
-
-  console.log(dealContent)
+ 
   const addDealToCart = () => {
-    if(!Object.values(itemsNeededForCart).includes(false)){
+    if(!Object.values(itemsNeededForDeal).includes(false)){
       if(localStorage.cart === ''){
         localStorage.cart = JSON.stringify([{
           type : 'deal',
           name : dealName,
-          content : dealContent, 
+          content : dealContent.current, 
           price : selectedDeal.price,
           id : Math.random()
           }])
@@ -43,7 +40,7 @@ export default function SelectedDeal({ deals, menu }) {
         localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
           type : 'deal',
           name : dealName,
-          content : dealContent,
+          content : dealContent.current,
           price : selectedDeal.price,
           id : Math.random()
         }])
@@ -70,22 +67,22 @@ export default function SelectedDeal({ deals, menu }) {
       </h1>
       <h2>Pizza</h2>
       <RequiredItemSelections 
-        selectedDealType="pizza" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
+        selectedDealType="pizza" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
       <h2>Wings</h2>
       <RequiredItemSelections 
-        selectedDealType="wings" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
+        selectedDealType="wings" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
       <h2>Bread</h2>
       <RequiredItemSelections 
-        selectedDealType="bread" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
+        selectedDealType="bread" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
       <h2>Sides</h2>
       <RequiredItemSelections 
-        selectedDealType="side" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
+        selectedDealType="side" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
       <h2>Dessert</h2>
       <RequiredItemSelections 
-        selectedDealType="dessert" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
+        selectedDealType="dessert" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
       <h2>Beverages</h2>
       <RequiredItemSelections 
-        selectedDealType="beverage" dealContent={dealContent} selectedDeal={selectedDeal} menu={menu} setItemsNeededForCart={setItemsNeededForCart}/>
+        selectedDealType="beverage" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
       <RedirectToCart />
       <button onClick={addDealToCart}>
         Add to cart
