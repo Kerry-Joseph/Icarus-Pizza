@@ -36,8 +36,7 @@ export default function RequiredItemSelections({selectedDealType, dealContent, s
     return
   } else {
     return itemRequiringUserInput.map(item => (
-      <MenuItemForDealPage 
-        currentReq={currentReq} 
+      <MenuItemForDealPage  
         item={item} 
         key={item._id} 
         setReqState={setReqState} 

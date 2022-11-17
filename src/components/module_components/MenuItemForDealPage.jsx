@@ -10,6 +10,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? (item.itemType === 'wings' ? '6 piece' : 'Medium') : '')
   const [, setItemPrice] = useState(item.price)
   
+  
 
   const minimumQunatity = () => itemQuantity === 0 ? true : false
   const maximumQuantity = () => reqState.quantity === 0 ? true : false
@@ -86,9 +87,9 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
         </div>
         <ExtraOptionsBasedOnItemType 
           item={item} 
+          reqState = {reqState}
           setSizeState={setSizeState}
           setItemPrice={setItemPrice}/>
-          
       </div>
     )
   }
