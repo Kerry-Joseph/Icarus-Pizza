@@ -22,33 +22,35 @@ export default function ExtraOptionsBasedOnItemType({ item, setItemPrice, setSiz
   // }
 
   useEffect(() => {
-    if(reqState.size){
-      if(reqState.size === 'small'){
-        setActiveButton({
-          sm: true,
-          md: false,
-          lg: false,
-        })
-      } else if(reqState.size === 'medium'){
-        setActiveButton({
-          sm: false,
-          md: true,
-          lg: false,
-        })
-      } else if(reqState.size === 'large'){
-        setActiveButton({
-          sm: false,
-          md: false,
-          lg: true,
-        })
-      }
-    }
+    if(reqState !== undefined)
+      if(reqState.size){
+        if(reqState.size === 'small'){
+          setActiveButton({
+            sm: true,
+            md: false,
+            lg: false,
+          })
+        } else if(reqState.size === 'medium'){
+          setActiveButton({
+            sm: false,
+            md: true,
+            lg: false,
+          })
+        } else if(reqState.size === 'large'){
+          setActiveButton({
+            sm: false,
+            md: false,
+            lg: true,
+          })
+        }
+      } 
   }, [reqState])
 
   const sizeRequirement = (size) => {
-    if(size !== reqState.size){
-      return true
-    } else return false
+    if(reqState !== undefined)
+      if(size !== reqState.size){
+        return true
+      } else return false
   } 
   
 
