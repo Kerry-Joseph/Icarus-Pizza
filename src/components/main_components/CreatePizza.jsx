@@ -2,14 +2,14 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Pizza(){
+export default function Pizza({ createPreset }){
   const [crustPrice, setCrustPrice] = useState(0)
   const [sizePrice, setSizePrice] = useState(0)
-  let toppingAmountTotal = 0
+  
 
   const [pizza, setPizza] = useState(
     {
-      name : 'Personal Pizza',
+      name : '',
       size : 'Medium',
       crust : 'Regular',
       toppings : {
@@ -30,8 +30,9 @@ export default function Pizza(){
     }
   )
 
-  
+
   const toppingsValuesArray = Object.values(pizza.toppings)
+  let toppingAmountTotal = 0
 
   toppingsValuesArray.forEach(val => toppingAmountTotal += val)
 
@@ -97,21 +98,25 @@ export default function Pizza(){
       localStorage.cart = JSON.stringify([{
         type : 'personal pizza',
         price : pizza.price,
-        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, Toppings `,
+        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, ${toppingAmountTotal > 0 ? `Toppings: ${toppingsString()}` : 'Toppings: none'}`,
         id : Math.random()
        }])
     } else {
       localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
         type : 'personal pizza',
         price : pizza.price,
-        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, Toppings: ${toppingsString()}`,
+        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, ${toppingAmountTotal > 0 ? `Toppings: ${toppingsString()}` : 'Toppings: none'}`,
         id : Math.random()
       }])
     }
   }
 
 
-
+  const handleChange = e => {
+    setPizza(prev => ({
+        ...prev, name: e.target.value
+    }))
+  }
 
   const ToppingDiv = ({ topping }) => {
     return (
@@ -165,6 +170,11 @@ export default function Pizza(){
       <ToppingDiv topping='Beef' />
       <ToppingDiv topping='Ham' />
       <ToppingDiv topping='Pineapple' />
+      <form onSubmit={e => {createPreset(pizza); e.preventDefault()}}>
+        <h1>create preset</h1>
+        <input type="text" value={pizza.name} onChange={handleChange}/>
+        <input type="submit" value="submit" />
+      </form>
     </>
   )
 }

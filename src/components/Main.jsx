@@ -17,7 +17,7 @@ export default function Main() {
   const [menuData, setMenuData] = useState(null)
   const [dealsData, setDealsData] = useState(null)
 
-  const { REACT_APP_API_MENU_URL, REACT_APP_API_DEALS_URL } = process.env
+  const { REACT_APP_API_MENU_URL, REACT_APP_API_DEALS_URL, REACT_APP_API_CREATE_PRESET_URL } = process.env
 
   // API ---
   const fetchMenu = async() => {
@@ -37,6 +37,20 @@ export default function Main() {
       setDealsData(data)
     } catch(err) {
       console.log('failed to fetch deals')      
+    }
+  }
+
+  const createPreset = async(preset) => {
+    try {
+      await fetch(REACT_APP_API_CREATE_PRESET_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "Application/json"
+        },
+        body: JSON.stringify(preset)
+      })
+    } catch(err) {
+      console.log('failed to make post request for preset')
     }
   }
 
@@ -83,7 +97,8 @@ export default function Main() {
           }/>
           
           <Route path='/create-pizza' element={
-            <CreatePizza />
+            <CreatePizza 
+              createPreset = {createPreset}/>
           }/>
         </Routes>
       </main>
