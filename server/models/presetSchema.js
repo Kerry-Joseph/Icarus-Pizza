@@ -8,7 +8,7 @@ const PresetSchema = new mongoose.Schema({
   },
   size: String,
   crust: String,
-  toppings: Array,
+  toppings: Object,
   price: Number
 })
 
