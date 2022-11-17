@@ -1,3 +1,170 @@
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+
 export default function Pizza(){
-  return <h1>Pizza Page</h1>
+  const [crustPrice, setCrustPrice] = useState(0)
+  const [sizePrice, setSizePrice] = useState(0)
+  let toppingAmountTotal = 0
+
+  const [pizza, setPizza] = useState(
+    {
+      name : 'Personal Pizza',
+      size : 'Medium',
+      crust : 'Regular',
+      toppings : {
+        Pepperoni : 0,
+        Sausage : 0,
+        Mushrooms : 0,
+        Bacon : 0,
+        Onions : 0,
+        Peppers : 0,
+        Chicken : 0,
+        black_olives : 0,
+        Spinach : 0,
+        Beef : 0,
+        Ham : 0,
+        Pineapple : 0
+      },
+      price : 4.99 
+    }
+  )
+
+  
+  const toppingsValuesArray = Object.values(pizza.toppings)
+
+  toppingsValuesArray.forEach(val => toppingAmountTotal += val)
+
+
+  useEffect(() => {
+    setPizza(prev => ({
+      ...prev,
+      price : Math.round((4.99 + toppingAmountTotal + crustPrice + sizePrice) * 100)/100
+    }))
+  }, [toppingAmountTotal,crustPrice,sizePrice,pizza.price])
+
+  
+
+  const increaseTopping = (topping) => {
+    if(pizza.toppings[topping] < 10){
+      setPizza(prev => ({
+        ...prev,
+        toppings : {
+          ...prev.toppings,
+          [topping] : prev.toppings[topping]++
+        }
+      }))
+    } else {
+      return
+    }
+  }
+  const decreaseTopping = (topping) => {
+    if(pizza.toppings[topping] > 0){
+      setPizza(prev => ({
+        ...prev,
+        toppings : {
+          ...prev.toppings,
+          [topping] : prev.toppings[topping]--
+        }
+      }))
+    } else {
+      return
+    }
+  }
+  
+
+
+  const toppingsString = () => {
+    let toppingsArr = []
+
+    const object = pizza.toppings
+
+    for(const topping in object){
+      if(object[topping] > 1){
+        toppingsArr.push(`${topping} x${object[topping]}`)
+      } else if(object[topping] > 0) {
+        toppingsArr.push(`${topping}`)
+      }
+    }
+
+    return toppingsArr.join(', ')
+  }
+
+
+
+  const addPersonalPizzaToCart = () => {
+    if(localStorage.cart === ''){
+      localStorage.cart = JSON.stringify([{
+        type : 'personal pizza',
+        price : pizza.price,
+        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, Toppings `,
+        id : Math.random()
+       }])
+    } else {
+      localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
+        type : 'personal pizza',
+        price : pizza.price,
+        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, Toppings: ${toppingsString()}`,
+        id : Math.random()
+      }])
+    }
+  }
+
+
+
+
+  const ToppingDiv = ({ topping }) => {
+    return (
+      <div>
+        <h3>{topping === 'black_olives' ? 'Black Olives' : topping}</h3>
+        <button onClick={() => increaseTopping(topping)}>
+          +
+        </button>
+        <button onClick={() => decreaseTopping(topping)}>
+          -
+        </button>
+      </div>
+    )
+  }
+
+  
+  return (
+    <>
+      <Link to={'/cart'} onClick={addPersonalPizzaToCart}>add to cart</Link>
+      <div>
+        <button onClick={() => {setSizePrice(-2); setPizza(prev => ({...prev, size : 'Small'}))}}>
+          sm
+        </button>
+        <button onClick={() => {setSizePrice(0); setPizza(prev => ({...prev, size : 'Medium'}))}}>
+          md
+        </button>
+        <button onClick={() => {setSizePrice(2); setPizza(prev => ({...prev, size : 'Large'}))}}>
+          lg
+        </button>
+      </div>
+      <div>
+        <button onClick={() => {setCrustPrice(-1); setPizza(prev => ({...prev, crust : 'Slim'}))}}>
+          slim
+        </button>
+        <button onClick={() => {setCrustPrice(0); setPizza(prev => ({...prev, crust : 'Regular'}))}}>
+          reg
+        </button>
+        <button onClick={() => {setCrustPrice(2); setPizza(prev => ({...prev, crust : 'Stuffed'}))}}>
+          stuffed
+        </button>
+      </div>
+      <ToppingDiv topping='Pepperoni' />
+      <ToppingDiv topping='Sausage' />
+      <ToppingDiv topping='Mushrooms' />
+      <ToppingDiv topping='Bacon' />
+      <ToppingDiv topping='Onions' />
+      <ToppingDiv topping='Peppers' />
+      <ToppingDiv topping='Chicken' />
+      <ToppingDiv topping='black_olives' />
+      <ToppingDiv topping='Spinach' />
+      <ToppingDiv topping='Beef' />
+      <ToppingDiv topping='Ham' />
+      <ToppingDiv topping='Pineapple' />
+    </>
+  )
 }

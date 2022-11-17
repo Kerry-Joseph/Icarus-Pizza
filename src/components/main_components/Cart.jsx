@@ -16,7 +16,17 @@ export default function Cart() {
 
 
   const Order = (item) => {
-    if(item.type === 'deal'){
+    if(item.type === 'personal pizza'){
+      return (
+        <div key={item.id}>
+          <h1>Personal Pizza</h1>
+          <p>{item.content}</p>
+          <p>{item.price}</p>
+          <button onClick={() => localStorage.cart = ''}>clear</button>
+          <button onClick={() => deleteItem(item.id)}>delete</button>
+        </div>
+      )
+    } else if(item.type === 'deal'){
       return(
         <div key={item.id}>
           <h1>{item.name} Deal</h1>
@@ -26,8 +36,7 @@ export default function Cart() {
           <button onClick={() => deleteItem(item.id)}>delete</button>
         </div>
       )
-    }
-    if(item.type === 'pizza' || item.type === 'wings'){
+    } else if(item.type === 'pizza' || item.type === 'wings'){
       return(
         <div key={item.id}>
           <h1><span>{item.size} |</span> {item.name}</h1>
