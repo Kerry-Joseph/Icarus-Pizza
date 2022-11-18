@@ -1,12 +1,11 @@
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Pizza({ createPreset }){
   const [crustPrice, setCrustPrice] = useState(0)
   const [sizePrice, setSizePrice] = useState(0)
   
-
+  // pizza state
   const [pizza, setPizza] = useState(
     {
       name : '',
@@ -42,9 +41,10 @@ export default function Pizza({ createPreset }){
       ...prev,
       price : Math.round((4.99 + toppingAmountTotal + crustPrice + sizePrice) * 100)/100
     }))
-  }, [toppingAmountTotal,crustPrice,sizePrice,pizza.price])
+  }, [ toppingAmountTotal, crustPrice, sizePrice, pizza.price ])
 
   
+
 
   const increaseTopping = (topping) => {
     if(pizza.toppings[topping] < 10){
@@ -112,11 +112,18 @@ export default function Pizza({ createPreset }){
   }
 
 
+
+  // for the create preset form text input
   const handleChange = e => {
     setPizza(prev => ({
         ...prev, name: e.target.value
     }))
   }
+
+
+
+
+  // COMPONENETS ----
 
   const ToppingDiv = ({ topping }) => {
     return (

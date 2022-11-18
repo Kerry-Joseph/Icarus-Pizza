@@ -10,12 +10,19 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? (item.itemType === 'wings' ? '6 piece' : 'Medium') : '')
   const [, setItemPrice] = useState(item.price)
   
-  
+  // requirement state quantity === how many items are left that users need to choose
 
   const minimumQunatity = () => itemQuantity === 0 ? true : false
   const maximumQuantity = () => reqState.quantity === 0 ? true : false
 
-  const itemType = reqState.itemType
+
+
+  // requirement item type shorthand ------------
+  const type = reqState.itemType
+  // --------------------------------------------
+
+  
+
 
   const openItemOptions = () => {
     if(itemQuantity === 0 && reqState.quantity > 0){
@@ -28,10 +35,13 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
     }
   }
 
+
+
+
   useEffect(() => {
     if(reqState.quantity > 0){
       setItemsNeededForDeal(prev => (
-        { ...prev, [itemType] : false}
+        { ...prev, [type] : false}
       ))
     }
   }, [reqState.quantity])
@@ -39,16 +49,19 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   const userSelectedItemCartString = `${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`
 
   useEffect(() => {
-    if(itemsNeededForDeal[itemType] === true)
+    if(itemsNeededForDeal[type] === true)
       dealContent.push(userSelectedItemCartString)
-  }, [itemsNeededForDeal[itemType]])
+  }, [itemsNeededForDeal[type]])
   
   
+
+
+
 
   const addToDealContent = () => {
     if(reqState.quantity === 0){
       setItemsNeededForDeal(prev => (
-        { ...prev, [itemType] : true}
+        { ...prev, [type] : true}
       ))
     } else {
       return
@@ -56,12 +69,14 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }
 
 
+
+
+
   const reqIncrease = () => {
     setReqState(prev => (
       {...prev, quantity : prev.quantity - 1 }
     ))
   }
-
   const reqDecrease = () => {
     setReqState(prev => (
       {...prev, quantity : prev.quantity + 1 }
@@ -69,6 +84,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }
 
 
+  // COMPONENETS ----
 
   const NotAddedToDealContent = () => {
     return (
@@ -105,11 +121,13 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }
 
 
+  
+
   return (
     <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openItemOptions}>
       <h1>{item.name}</h1>
       <p>{item.description}</p>
-      {!itemsNeededForDeal[itemType] ? NotAddedToDealContent() : AddedToDealContent()}
+      {!itemsNeededForDeal[type] ? NotAddedToDealContent() : AddedToDealContent()}
     </div>
   )
 }

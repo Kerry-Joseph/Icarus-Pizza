@@ -23,7 +23,7 @@ export default function SelectedDeal({ deals, menu }) {
     beverage : null
   })
 
-  const [gtg, setGtg] = useState(false)
+  const [allRequiredItemsSelected, setAllRequiredItemsSelected] = useState(false)
  
   const addDealToCart = () => {
     if(!Object.values(itemsNeededForDeal).includes(false)){
@@ -35,7 +35,7 @@ export default function SelectedDeal({ deals, menu }) {
           price : selectedDeal.price,
           id : Math.random()
           }])
-          setGtg(true)
+          setAllRequiredItemsSelected(true)
       } else {
         localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
           type : 'deal',
@@ -44,15 +44,19 @@ export default function SelectedDeal({ deals, menu }) {
           price : selectedDeal.price,
           id : Math.random()
         }])
-        setGtg(true)
+        setAllRequiredItemsSelected(true)
       } 
     } else {
       alert('required items needed')
     }
   }
   
+
+
+  // COMPONENTS ----
+
   const RedirectToCart = () => {
-    if(gtg === true){
+    if(allRequiredItemsSelected === true){
       return <Navigate to='/cart' replace={true} />
     } else {
       return

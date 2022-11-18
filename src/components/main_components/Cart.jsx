@@ -39,7 +39,7 @@ export default function Cart() {
     } else if(item.type === 'pizza' || item.type === 'wings'){
       return(
         <div key={item.id}>
-          <h1><span>{item.size} |</span> {item.name}</h1>
+          <h1><span>{item.size}</span> {item.name}</h1>
           <p>{item.quantity}</p>
           <p>{item.price}</p>
           <button onClick={() => localStorage.cart = ''}>clear</button>

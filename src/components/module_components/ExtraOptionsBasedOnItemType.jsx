@@ -1,25 +1,16 @@
-import { useEffect } from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function ExtraOptionsBasedOnItemType({ item, setItemPrice, setSizeState, reqState }) {
 
   const [activeButton, setActiveButton] = useState({sm:false, md:true, lg:false})
 
+
+
   const highlightSmall = () => activeButton.sm ? {background: "#EAC435", color: '#B80C09'} : {}
   const highlightMedium = () => activeButton.md ? {background: "#EAC435", color: '#B80C09'} : {}
   const highlightLarge = () => activeButton.lg ? {background: "#EAC435", color: '#B80C09'} : {}
 
-  // const sizeConversionForWings = (size) => {
-  //   if(size === "4"){
-  //     return "sm"
-  //   } else if(size === "medium"){
-  //     return "md"
-  //   } else if(size === "large"){
-  //     return "lg"
-  //   } else {
-  //     return
-  //   }
-  // }
+
 
   useEffect(() => {
     if(reqState !== undefined)
@@ -46,6 +37,7 @@ export default function ExtraOptionsBasedOnItemType({ item, setItemPrice, setSiz
       } 
   }, [reqState])
 
+
   const sizeRequirement = (size) => {
     if(reqState !== undefined)
       if(size !== reqState.size){
@@ -53,6 +45,8 @@ export default function ExtraOptionsBasedOnItemType({ item, setItemPrice, setSiz
       } else return false
   } 
   
+
+
 
   const activeSmall = () => {
     setActiveButton({
@@ -76,7 +70,11 @@ export default function ExtraOptionsBasedOnItemType({ item, setItemPrice, setSiz
     })
   }
 
+
+  
+  // type shorthand ------------------
   const type = item.itemType
+  // ---------------------------------
 
   const itemPriceForLarge = () => {
     if(type === 'pizza'){

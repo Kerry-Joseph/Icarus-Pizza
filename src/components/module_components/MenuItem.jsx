@@ -48,6 +48,10 @@ export default function MenuItem({ item }) {
 
 
 
+
+
+  // COMPONENTS ------
+  
   const NotOrdered = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
