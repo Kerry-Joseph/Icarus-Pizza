@@ -14,9 +14,47 @@ export default function Cart() {
   }
 
 
+  const Orders = () => {  
+    return parsedCart.map(item => (
+      Order(item)
+    ))
+  }
+
+
+
+  
+  const getSubtotal = () => {
+    setSubtotal(0)
+    parsedCart.forEach(item => {
+      setSubtotal(prev => prev + item.price)
+    })
+  }
+
+  useEffect(() => {
+    getSubtotal()
+  }, [parsedCart])
+
+  const tax = Math.round((subtotal * .0269) * 100)/100
+  const subtotalWithTax = (Math.round(tax * 100)/100) + subtotal
+  const subtotalTaxAndDeliveryFee = Math.round((subtotalWithTax + deliveryFee) * 100)/100
+
+
+
+  // COMPONENTS ---- 
 
   const Order = (item) => {
-    if(item.type === 'personal pizza'){
+    if(item.type === 'preset'){
+      return (
+        <div key={item.id}>
+          <h1>{item.name}</h1>
+          <p>pizza preset</p>
+          <p>{item.content}</p>
+          <p>{item.price}</p>
+          <button onClick={() => localStorage.cart = ''}>clear</button>
+          <button onClick={() => deleteItem(item.id)}>delete</button>
+        </div>
+      )
+    } else if(item.type === 'personal pizza'){
       return (
         <div key={item.id}>
           <h1>Personal Pizza</h1>
@@ -60,30 +98,6 @@ export default function Cart() {
   }
 
 
-
-  const Orders = () => {  
-    return parsedCart.map(item => (
-      Order(item)
-    ))
-  }
-
-
-
-  
-  const getSubtotal = () => {
-    setSubtotal(0)
-    parsedCart.forEach(item => {
-      setSubtotal(prev => prev + item.price)
-    })
-  }
-
-  useEffect(() => {
-    getSubtotal()
-  }, [parsedCart])
-
-  const tax = Math.round((subtotal * .0269) * 100)/100
-  const subtotalWithTax = (Math.round(tax * 100)/100) + subtotal
-  const subtotalTaxAndDeliveryFee = Math.round((subtotalWithTax + deliveryFee) * 100)/100
 
   return (
     <div>

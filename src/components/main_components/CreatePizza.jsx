@@ -98,14 +98,14 @@ export default function Pizza({ createPreset }){
       localStorage.cart = JSON.stringify([{
         type : 'personal pizza',
         price : pizza.price,
-        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, ${toppingAmountTotal > 0 ? `Toppings: ${toppingsString()}` : 'Toppings: none'}`,
+        content : `Size: ${pizza.size} | Crust: ${pizza.crust} | ${toppingAmountTotal > 0 ? `Toppings: ${toppingsString()}` : 'Toppings: none'}`,
         id : Math.random()
        }])
     } else {
       localStorage.cart = JSON.stringify([...JSON.parse(localStorage.cart), {
         type : 'personal pizza',
         price : pizza.price,
-        content : `Size: ${pizza.size}, Crust: ${pizza.crust}, ${toppingAmountTotal > 0 ? `Toppings: ${toppingsString()}` : 'Toppings: none'}`,
+        content : `Size: ${pizza.size} | Crust: ${pizza.crust} | ${toppingAmountTotal > 0 ? `Toppings: ${toppingsString()}` : 'Toppings: none'}`,
         id : Math.random()
       }])
     }

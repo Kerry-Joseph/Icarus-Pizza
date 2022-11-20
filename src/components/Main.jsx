@@ -8,6 +8,7 @@ import Deals from './main_components/Deals'
 import Home from './main_components/Home'
 import SelectedDeal from './main_components/SelectedDeal'
 import CreatePizza from './main_components/CreatePizza'
+import Presets from './main_components/Presets'
 
 import '../index.scss'
 
@@ -16,13 +17,14 @@ export default function Main() {
   // STATES ---
   const [menuData, setMenuData] = useState(null)
   const [dealsData, setDealsData] = useState(null)
+  const [presetsData, setPresetsData] = useState(null)
 
-  const { REACT_APP_API_MENU_URL, REACT_APP_API_DEALS_URL, REACT_APP_API_CREATE_PRESET_URL } = process.env
+  const { REACT_APP_MENU_URL, REACT_APP_DEALS_URL, REACT_APP_CREATE_PRESET_URL, REACT_APP_PRESETS_URL } = process.env
 
   // API ---
   const fetchMenu = async() => {
     try {
-      const res = await fetch(REACT_APP_API_MENU_URL)
+      const res = await fetch(REACT_APP_MENU_URL)
       const data = await res.json()
       setMenuData(data)
     } catch (err) {
@@ -32,7 +34,7 @@ export default function Main() {
 
   const fetchDeals = async() => {
     try {
-      const res = await fetch(REACT_APP_API_DEALS_URL)
+      const res = await fetch(REACT_APP_DEALS_URL)
       const data = await res.json()
       setDealsData(data)
     } catch(err) {
@@ -40,9 +42,19 @@ export default function Main() {
     }
   }
 
+  const fetchPresets = async() => {
+    try {
+      const res = await fetch(REACT_APP_PRESETS_URL)
+      const data = await res.json()
+      setPresetsData(data)
+    } catch(err) {
+      console.log('failed to fetch presets')      
+    }
+  }
+
   const createPreset = async(preset) => {
     try {
-      await fetch(REACT_APP_API_CREATE_PRESET_URL, {
+      await fetch(REACT_APP_CREATE_PRESET_URL, {
         method: "POST",
         headers: {
           "Content-Type": "Application/json"
@@ -59,6 +71,7 @@ export default function Main() {
   useEffect(() => {
     fetchMenu()
     fetchDeals()
+    fetchPresets()
   },[])
 
 
@@ -100,6 +113,11 @@ export default function Main() {
             <CreatePizza 
               createPreset = {createPreset}/>
           }/>
+
+          <Route path='/pizza-presets' element={
+            <Presets
+              presets = {presetsData}/>
+          }/>
         </Routes>
       </main>
     )  
@@ -117,7 +135,7 @@ export default function Main() {
 
   return (
       <>
-        {dealsData && menuData ? loaded() : loading()}
+        {dealsData && menuData && presetsData ? loaded() : loading()}
       </>
     )
 
