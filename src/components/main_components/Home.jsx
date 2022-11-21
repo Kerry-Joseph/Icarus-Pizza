@@ -18,7 +18,7 @@ export default function Home({ menuData }) {
           <h2>Tom's Test Deal</h2>
       </Link>
 
-      <section className='popular-items'>
+      <section className='home_popular-items-section'>
         <h1 className='popular-items__title'>
           Popular Items
         </h1>
@@ -34,6 +34,11 @@ export default function Home({ menuData }) {
           <MenuItem 
             item = {menuData[4]} />
         </div>
+      </section>
+      <section className='home_rewards-section'>
+        <Link to='/rewards' className='home_rewards'>
+          Join Icarus Rewards Club
+        </Link>
       </section>
 
     </div>
