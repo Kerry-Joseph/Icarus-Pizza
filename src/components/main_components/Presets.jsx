@@ -1,6 +1,33 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 
 export default function Presets({ presets }) {
+
+  const [filter, setFilter] = useState({text:''})
+
+  
+  const filteredPresets = presets.filter(preset => preset.name.toLowerCase().includes(filter.text))
+
+
+  const handleChange = e => {
+    setFilter(prev => ({
+        ...prev, text: [e.target.value]
+    }))
+  }
+
+
+  // COMPONENTS ----
+
+  const AllPresets = () => {
+    return filteredPresets.map(preset => (
+    <PresetDiv preset={preset} key={Math.random()}/>
+    ))
+  }
+
+
+
+
+
 
   const PresetDiv = ({ preset }) => {
 
@@ -40,9 +67,8 @@ export default function Presets({ presets }) {
       }
     }
     
-
     return (
-      <Link to="/cart"onClick={addPresetToCart}>
+      <Link to="/cart" onClick={addPresetToCart}>
         <h1>{preset.name}</h1>
         <p>Size: {preset.size}</p>
         <p>Crust: {preset.crust}</p>
@@ -51,14 +77,15 @@ export default function Presets({ presets }) {
     )
   }
 
-  const AllPresets = () => {
-    return presets.map(preset => (
-      <PresetDiv preset={preset} />
-    ))
-  }
+  
 
+
+  
   return (
     <>
+      <form>
+        <input type="text" value={filter.text} onChange={handleChange} />
+      </form>
       <AllPresets />
     </>
   )
