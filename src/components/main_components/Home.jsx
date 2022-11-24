@@ -35,12 +35,6 @@ export default function Home({ menuData }) {
             item = {menuData[4]} />
         </div>
       </section>
-      <section className='home_rewards-section'>
-        <Link to='/rewards' className='home_rewards'>
-          Join Icarus Rewards Club
-        </Link>
-      </section>
-
     </div>
   )
 }

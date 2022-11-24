@@ -1,0 +1,82 @@
+// media 
+$md: 768px;
+$lg: 1024px;
+
+// brand color
+$icarus-red: #B80C09;
+$icarus-yellow: #EAC435;
+
+.outer-footer {
+  background-color: $icarus-yellow;
+  border-top: black solid .2rem;
+  display: flex;
+  justify-content: center;
+}
+
+
+.footer {
+  max-width: 1280px;
+
+  
+}
+
+
+.footer__company-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (min-width: $md) {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  ul {
+    // border: #B80C09 solid 1px;
+    list-style: none;
+    padding: 0 1.5rem;
+    text-align: center;
+    
+    h3 {
+      font-size: 1.4rem;
+      margin: .2rem 0;
+    }
+
+    li {
+      cursor: pointer;
+      padding: .1rem 0;
+    }
+  }
+}
+
+.footer__apps {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+
+  
+
+  img {
+    cursor: pointer;
+    max-width: 4rem;
+
+    @media (min-width: $md) {
+      max-width: 5rem;
+    }
+  }
+}
+
+
+.footer__terms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 .2rem;
+  padding-bottom: 2rem;
+
+
+  p {
+    cursor: pointer;
+    padding: 0 .8rem;
+    margin: .4rem 0;
+  }
+}
