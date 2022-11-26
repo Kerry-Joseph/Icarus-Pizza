@@ -16,7 +16,7 @@ $icarus-yellow: #EAC435;
 
   .home__order-now {
     margin: 2rem;
-    padding: 1rem 5.5rem;
+    padding: 1rem 4.5rem;
     border-radius: .5rem;
     border: black .15rem solid;
     background: $icarus-yellow;
@@ -61,7 +61,7 @@ $icarus-yellow: #EAC435;
 
     @media (min-width: $md) {
       display: grid;
-      grid-template-columns: auto 16.5% 16.5% auto;
+      grid-template-columns: auto 16.66% 16.66% auto;
       grid-template-rows: 15rem 15rem;
       gap: 1rem;      
 

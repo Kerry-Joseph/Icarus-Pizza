@@ -80,10 +80,10 @@ export default function MenuItem({ item }) {
   const Ordered = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
-        <button onClick={() => {setOrderedState(false); setItemQuantity(0)}}>X</button>
-        <h1>ADDED!!</h1>
-        <Link to='/cart'>
-          go to cart
+        <button onClick={() => {setOrderedState(false); setItemQuantity(0)}} id='order-options-added--button'>X</button>
+        <h1 className='order-options-added--text'>ADDED TO CART</h1>
+        <Link to='/cart' className='order-options-added--link'>
+          Go to cart
         </Link>
       </div>
     )

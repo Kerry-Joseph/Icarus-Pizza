@@ -31,9 +31,8 @@ $icarus-yellow: #EAC435;
   }
 
   ul {
-    // border: #B80C09 solid 1px;
     list-style: none;
-    padding: 0 1.5rem;
+    padding: 0 1.5rem ;
     text-align: center;
     
     h3 {
@@ -78,5 +77,6 @@ $icarus-yellow: #EAC435;
     cursor: pointer;
     padding: 0 .8rem;
     margin: .4rem 0;
+    text-align: center;
   }
 }
