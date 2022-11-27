@@ -82,11 +82,11 @@ export default function Presets({ presets }) {
 
   
   return (
-    <>
+    <main style={{display: 'flex', flexDirection: 'column'}}>
       <form>
         <input type="text" value={filter.text} onChange={handleChange} />
       </form>
       <AllPresets />
-    </>
+    </main>
   )
 }

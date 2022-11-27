@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
+
+import './createPizza.scss'
 
 export default function Pizza({ createPreset }){
   const [crustPrice, setCrustPrice] = useState(0)
   const [sizePrice, setSizePrice] = useState(0)
+  const [presetDiv, setPresetDiv] = useState(false)
+  const [redirdect, setRedirect] = useState(false)
   
   // pizza state
   const [pizza, setPizza] = useState(
@@ -87,7 +91,6 @@ export default function Pizza({ createPreset }){
         toppingsArr.push(`${topping}`)
       }
     }
-
     return toppingsArr.join(', ')
   }
 
@@ -122,66 +125,121 @@ export default function Pizza({ createPreset }){
 
 
 
+  const showToppingMultiplyer = topping => {
+    if(pizza.toppings[topping] < 2){
+      return ''
+    } else {
+      return `x${pizza.toppings[topping]}`
+    }
+  }
+
+  const activeToppingStyling = topping => {
+    if(pizza.toppings[topping] < 1){
+      return {color: '#B80C09'}
+    } else {
+      return {color: 'green'}
+    }
+  }
+
+  const activeSizeStyling = size => {
+    if(pizza.size === size){
+      return {color: 'black', background: '#EAC435'}
+    } else {
+      return
+    }
+  }
+
+  const activeCrustStyling = crust => {
+    if(pizza.crust === crust){
+      return {color: 'black', background: '#EAC435'}
+    } else {
+      return
+    }
+  }
+
+
+
 
   // COMPONENETS ----
 
   const ToppingDiv = ({ topping }) => {
     return (
-      <div>
-        <h3>{topping === 'black_olives' ? 'Black Olives' : topping}</h3>
-        <button onClick={() => increaseTopping(topping)}>
-          +
-        </button>
-        <button onClick={() => decreaseTopping(topping)}>
-          -
-        </button>
+      <div className='create-pizza__topping-div'>
+        <h3 onClick={() => increaseTopping(topping)} style={activeToppingStyling(topping)}>
+          {topping === 'black_olives' ? 'Black Olives' : topping} {showToppingMultiplyer(topping)}
+        </h3>
+
+        {pizza.toppings[topping] > 0 ?
+          <button onClick={() => decreaseTopping(topping)}>
+            remove
+          </button> 
+        : ''}
       </div>
     )
   }
 
   
   return (
-    <>
-      <Link to={'/cart'} onClick={addPersonalPizzaToCart}>add to cart</Link>
-      <div>
-        <button onClick={() => {setSizePrice(-2); setPizza(prev => ({...prev, size : 'Small'}))}}>
-          sm
-        </button>
-        <button onClick={() => {setSizePrice(0); setPizza(prev => ({...prev, size : 'Medium'}))}}>
-          md
-        </button>
-        <button onClick={() => {setSizePrice(2); setPizza(prev => ({...prev, size : 'Large'}))}}>
-          lg
-        </button>
-      </div>
-      <div>
-        <button onClick={() => {setCrustPrice(-1); setPizza(prev => ({...prev, crust : 'Slim'}))}}>
-          slim
-        </button>
-        <button onClick={() => {setCrustPrice(0); setPizza(prev => ({...prev, crust : 'Regular'}))}}>
-          reg
-        </button>
-        <button onClick={() => {setCrustPrice(2); setPizza(prev => ({...prev, crust : 'Stuffed'}))}}>
-          stuffed
-        </button>
-      </div>
-      <ToppingDiv topping='Pepperoni' />
-      <ToppingDiv topping='Sausage' />
-      <ToppingDiv topping='Mushrooms' />
-      <ToppingDiv topping='Bacon' />
-      <ToppingDiv topping='Onions' />
-      <ToppingDiv topping='Peppers' />
-      <ToppingDiv topping='Chicken' />
-      <ToppingDiv topping='black_olives' />
-      <ToppingDiv topping='Spinach' />
-      <ToppingDiv topping='Beef' />
-      <ToppingDiv topping='Ham' />
-      <ToppingDiv topping='Pineapple' />
-      <form onSubmit={e => {createPreset(pizza); e.preventDefault()}}>
-        <h1>create preset</h1>
-        <input type="text" value={pizza.name} onChange={handleChange}/>
-        <input type="submit" value="submit" />
+    <main className='create-pizza'>
+      <h1 className='create-pizza__title'>
+        Create Pizza
+      </h1>
+      <section className='create-pizza__options'>
+        <div className='create-pizza__sizes'>
+          <h2>Size</h2>
+          <button onClick={() => {setSizePrice(-2); setPizza(prev => ({...prev, size : 'Small'}))}} style={activeSizeStyling('Small')}>
+            Small
+          </button>
+          <button onClick={() => {setSizePrice(0); setPizza(prev => ({...prev, size : 'Medium'}))}} style={activeSizeStyling('Medium')}>
+            Medium
+          </button>
+          <button onClick={() => {setSizePrice(2); setPizza(prev => ({...prev, size : 'Large'}))}} style={activeSizeStyling('Large')}>
+            Large
+          </button>
+        </div>
+        <div className='create-pizza__crusts'>
+          <h2>Crust</h2>
+          <button onClick={() => {setCrustPrice(-1); setPizza(prev => ({...prev, crust : 'Thin'}))}} style={activeCrustStyling('Thin')}>
+            Thin
+          </button>
+          <button onClick={() => {setCrustPrice(0); setPizza(prev => ({...prev, crust : 'Regular'}))}} style={activeCrustStyling('Regular')}>
+            Regular
+          </button>
+          <button onClick={() => {setCrustPrice(2); setPizza(prev => ({...prev, crust : 'Stuffed'}))}} style={activeCrustStyling('Stuffed')}>
+            Stuffed
+          </button>
+        </div>
+        <h2>Toppings</h2>
+        <div className='create-pizza__toppings'>
+          <ToppingDiv topping='Pepperoni' />
+          <ToppingDiv topping='Sausage' />
+          <ToppingDiv topping='Mushrooms' />
+          <ToppingDiv topping='Bacon' />
+          <ToppingDiv topping='Onions' />
+          <ToppingDiv topping='Peppers' />
+          <ToppingDiv topping='Chicken' />
+          <ToppingDiv topping='black_olives' />
+          <ToppingDiv topping='Spinach' />
+          <ToppingDiv topping='Beef' />
+          <ToppingDiv topping='Ham' />
+          <ToppingDiv topping='Pineapple' />
+        </div>
+      </section>
+      <Link to={'/cart'} onClick={addPersonalPizzaToCart} className='create-pizza__add-to-cart'>
+        add to cart
+      </Link>
+      <button className='create-pizza__open-create-preset' onClick={() => setPresetDiv(true)} style={presetDiv ? {display:'none'} : {display:'block'}}>
+        create preset
+      </button>
+      <form className='create-pizza__create-preset-form' onSubmit={e => {createPreset(pizza); e.preventDefault(); setRedirect(true)}} style={!presetDiv ? {display:'none'} : {display:'block'}}>
+        <h1>Name Preset</h1>
+        <div>
+          <input type="text" value={pizza.name} onChange={handleChange}/>
+          <input type="submit" value="submit" />
+        </div>
+        <p>*preset name must be unique*</p>
       </form>
-    </>
+      {redirdect ? <Navigate to='/pizza-presets' replace={true} /> : ''}
+    </main>
   )
 }

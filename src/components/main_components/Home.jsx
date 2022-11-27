@@ -23,20 +23,15 @@ export default function Home({ menuData }) {
           Popular Items
         </h1>
         <div className='popular-items__content'>
-          <MenuItem 
-            className = "home-item-1"
+          <MenuItem       
             item = {menuData[0]} />
           <MenuItem 
-            id = "home-item-2"
             item = {menuData[1]} />
           <MenuItem 
-            id = "home-item-3"
             item = {menuData[2]} />
-          <MenuItem 
-            id = "home-item-4"
+          <MenuItem             
             item = {menuData[3]} />
-          <MenuItem 
-            id = "home-item-5"
+          <MenuItem             
             item = {menuData[4]} />
         </div>
       </section>

@@ -1,0 +1,138 @@
+// media 
+$md: 768px;
+$lg: 1024px;
+
+// brand color
+$icarus-red: #B80C09;
+$icarus-yellow: #EAC435;
+
+@mixin red-button {
+  border: black solid 2px;
+  background-color: $icarus-red;
+  color: white;
+  border-radius: .4rem;
+}
+
+@mixin yellow-button {
+  border: black solid 2px;
+  background-color: $icarus-yellow;
+  color: black;
+  border-radius: .4rem;
+}
+
+
+.create-pizza {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    align-self: start;
+  }
+}
+
+.create-pizza__options {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin: 0;
+    padding-bottom: .2rem;
+    border-bottom: $icarus-red solid 1px;
+  }
+}
+
+.create-pizza__sizes, .create-pizza__crusts {
+  button {
+    @include red-button;
+    font-size: 1.7rem;
+    margin: 1rem .5rem 2rem .5rem;
+    padding: .2rem .5rem;
+    font-weight: 600;
+  }
+}
+
+.create-pizza__toppings {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  // justify-items: center;
+}
+
+.create-pizza__topping-div {
+  text-align: center;
+  position: relative;
+  h3 {
+    font-size: 1.6rem;
+    margin: 2rem 0;
+    cursor: pointer;
+  }
+  button {
+    @include yellow-button;
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+}
+
+.create-pizza__add-to-cart {
+  @include red-button;
+  width: 85%;
+  border-radius: .8rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 2rem;
+  padding: .5rem 0; 
+}
+
+.create-pizza__open-create-preset {
+  @include yellow-button;
+  height: 3rem;
+  width: 75%;
+  border-radius: .8rem;
+  font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;  
+}
+
+.create-pizza__create-preset-form {
+  width: 95%;
+  margin-bottom: 2rem;
+  position: relative;
+  margin-top: 1rem;
+  
+  h1 {
+    border-top: $icarus-red solid 1px;
+    padding-top: 1rem;
+    margin: 1rem 0 1rem 0;
+  }
+
+  div {
+    text-align: center;
+
+    :nth-child(1){
+      font-size: 1.5rem;
+      width: 55%;
+      height: 2.5rem;
+      border-radius: .4rem;
+      padding: 0 .5rem;
+    }
+
+    :nth-child(2){
+      @include yellow-button;
+      margin: .5rem;
+      font-weight: 600;
+      font-size: 1.5rem;
+      height: 2.9rem;
+    }
+  }
+
+  p {
+    position: absolute;
+    bottom: -2rem;
+  }
+}
