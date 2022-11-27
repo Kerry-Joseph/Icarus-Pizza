@@ -1,4 +1,4 @@
-import RequiredItemSelections from "../module_components/RequiredItemSelections"
+import RequiredItemSelections from "./RequiredItemSelections"
 import { useParams, Navigate } from "react-router-dom"
 import { useState, useRef } from "react"
 
