@@ -20,16 +20,20 @@ $icarus-yellow: #EAC435;
   border-radius: .4rem;
 }
 
+@mixin title {
+  font-size: 2rem;
+  padding: .3rem;
+  margin: 1rem;
+  border-bottom: $icarus-red solid 1px;
+}
+
 .menu {
   padding: 1rem;
   max-width: 1280px;
   width: 100%;
   
   .menu-title {
-    border-bottom: $icarus-red solid 1px;
-    font-size: 2rem;
-    padding: .3rem;
-    margin: 1rem;
+    @include title;
   }
 
   >:nth-child(2){
@@ -62,10 +66,8 @@ $icarus-yellow: #EAC435;
   }
 
   h3 {
-    border-bottom: $icarus-red solid 1px;
-    font-size: 2rem;
-    padding: .3rem;
-    margin: 1rem;
+    @include title;
+    
 
     @media (min-width: $md) {
       position: absolute;

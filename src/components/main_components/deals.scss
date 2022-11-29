@@ -20,6 +20,15 @@ $icarus-yellow: #EAC435;
   border-radius: .4rem;
 }
 
+@mixin title {
+  font-size: 2rem;
+  padding: .3rem;
+  margin: 1rem;
+  border-bottom: $icarus-red solid 1px;
+}
+
+
+
 .deals {
   padding: 1rem;
   width: 100%;
@@ -65,5 +74,67 @@ $icarus-yellow: #EAC435;
 
 .deal-component__description {
   font-size: 1.5rem;
+}
 
+
+.selected-deal {
+  width: 100%;
+  max-width: 1280px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+
+  .selected-deal-title {
+    @include title;
+    margin-bottom: 2rem;
+
+    @media (min-width: $md) {
+      align-self: flex-start;
+      width: 100%;
+    }
+  }
+
+  > section {
+    
+    @media (min-width: $md) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      margin: 3rem 0;
+      position: relative;
+      width: 100%;
+    }
+
+    h2 {
+      @include title;
+
+      @media (min-width: $md) {
+        position: absolute;
+        top: -4rem;
+        width: 50%;
+      }
+    }
+  }
+
+  .selected-deal__add-to-cart {
+    @include yellow-button;
+    margin: 2rem;
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 1rem 0;
+
+    @media (min-width: $md) {
+      padding: 1rem 4rem;
+      width: 75%;
+    }
+  }
+
+  .selected-deal__price {
+    font-weight: 700;
+    font-size: 2rem;
+    position: absolute;
+    right: 4rem;
+    top: 5.6rem
+  }
 }

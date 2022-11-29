@@ -90,7 +90,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <button className='order-options--add-to-cart' onClick={addToDealContent}>
-          add to cart
+          Confirm
         </button>
         <div className='order-options--quantity-buttons'>
           <button onClick={() => {setItemQuantity(prev => prev + 1); reqIncrease()} } disabled={maximumQuantity()}>
@@ -115,7 +115,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   const AddedToDealContent = () => {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
-        <h1 style={{color : 'white'}}>ADDED!!</h1>
+        <h1 style={{color : 'white'}}>Confirmed!</h1>
       </div>
     )
   }
