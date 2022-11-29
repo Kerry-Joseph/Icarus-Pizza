@@ -1,13 +1,18 @@
 import { Link } from 'react-router-dom'
 
+import './deals.scss'
+
 export default function Deals({ deals })  {
   
+
   const DealComponent = ({ deal }) => {
     return (
-      <Link to={`/deals/${deal.name}`}>
-        <h1>{deal.name}</h1>
-        <p>{deal.price}</p>
-        <p>{deal.description}</p>
+      <Link to={`/deals/${deal.name}`} style={{textDecoration : 'none'}}>
+        <div className='deal-component'>
+          <h1>{deal.name}</h1>
+          <p className='deal-component__price'>{deal.price}$</p>
+          <p className='deal-component__description'>{deal.description}</p>
+        </div>
       </Link>
     )
   }
@@ -20,10 +25,15 @@ export default function Deals({ deals })  {
   }
 
 
+
+
   return (
-    <>
-      <DealsContainer />      
-    </>
+    <main className='deals'>
+      <h2 className='deals__title'>Deals</h2>
+      <div className='deals-container'>
+        <DealsContainer />      
+      </div> 
+    </main>
   )
   
 }

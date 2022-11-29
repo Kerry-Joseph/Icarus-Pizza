@@ -1,0 +1,69 @@
+// media 
+$md: 768px;
+$lg: 1024px;
+
+// brand color
+$icarus-red: #B80C09;
+$icarus-yellow: #EAC435;
+
+@mixin red-button {
+  border: black solid 2px;
+  background-color: $icarus-red;
+  color: white;
+  border-radius: .4rem;
+}
+
+@mixin yellow-button {
+  border: black solid 2px;
+  background-color: $icarus-yellow;
+  color: black;
+  border-radius: .4rem;
+}
+
+.deals {
+  padding: 1rem;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.deals__title {
+  border-bottom: $icarus-red solid 1px;
+  font-size: 2rem;
+  padding: .3rem;
+  margin: 1rem;
+}
+
+.deals-container {
+  width: 100%;
+}
+
+
+.deal-component {
+  position: relative;
+  border: black solid 2px;
+  border-radius: 1rem;
+  padding: 1rem;
+  color: $icarus-red;
+  background: $icarus-yellow;
+  margin: .5rem;
+
+  @media (min-width: $md) {
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;    
+  }
+}
+
+.deal-component__price {
+  top: -1rem;
+  right: 1rem;
+  font-weight: 700;
+  font-size: 1.5rem;  
+  position: absolute;
+}
+
+.deal-component__description {
+  font-size: 1.5rem;
+
+}

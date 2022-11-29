@@ -1,4 +1,4 @@
-import '../module_components/menuItem.scss'
+import '../module_components/menu-item.scss'
 
 import { useState, useEffect } from 'react'
 
@@ -121,7 +121,6 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }
 
 
-  
 
   return (
     <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openItemOptions}>

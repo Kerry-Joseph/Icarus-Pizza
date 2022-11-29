@@ -1,6 +1,6 @@
 import RequiredItemSelections from "./RequiredItemSelections"
 import { useParams, Navigate } from "react-router-dom"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 
 export default function SelectedDeal({ deals, menu }) {
@@ -52,7 +52,24 @@ export default function SelectedDeal({ deals, menu }) {
   }
   
 
+  const sectionTitles = {
+    pizza : useRef(null),
+    wings : useRef(null),
+    sides : useRef(null),
+    bread : useRef(null),
+    dessert : useRef(null),
+    beverages : useRef(null),
+  }
 
+  const removeSectionNameIfNotRequired = (section) => {
+    if(sectionTitles[section].current === null) {
+      return
+    } else if(!sectionTitles[section].current.nextElementSibling.innerText.includes(' ')){
+      return {display: 'none'}
+    } else return
+  }
+
+  
   // COMPONENTS ----
 
   const RedirectToCart = () => {
@@ -63,28 +80,27 @@ export default function SelectedDeal({ deals, menu }) {
     }
   }
 
-
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       <h1>
         {dealName}
       </h1>
-      <h2>Pizza</h2>
+      <h2 ref={sectionTitles.pizza} style={removeSectionNameIfNotRequired('pizza')}>Pizza</h2>
       <RequiredItemSelections 
         selectedDealType="pizza" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
-      <h2>Wings</h2>
+      <h2 ref={sectionTitles.wings} style={removeSectionNameIfNotRequired('wings')}>Wings</h2>
       <RequiredItemSelections 
         selectedDealType="wings" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
-      <h2>Bread</h2>
+      <h2 ref={sectionTitles.bread} style={removeSectionNameIfNotRequired('bread')}>Bread</h2>
       <RequiredItemSelections 
         selectedDealType="bread" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
-      <h2>Sides</h2>
+      <h2 ref={sectionTitles.sides} style={removeSectionNameIfNotRequired('sides')}>Sides</h2>
       <RequiredItemSelections 
         selectedDealType="side" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
-      <h2>Dessert</h2>
+      <h2 ref={sectionTitles.dessert} style={removeSectionNameIfNotRequired('dessert')}>Dessert</h2>
       <RequiredItemSelections 
         selectedDealType="dessert" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
-      <h2>Beverages</h2>
+      <h2 ref={sectionTitles.beverages} style={removeSectionNameIfNotRequired('beverages')}>Beverages</h2>
       <RequiredItemSelections 
         selectedDealType="beverage" dealContent={dealContent.current} selectedDeal={selectedDeal} menu={menu} setItemsNeededForDeal={setItemsNeededForDeal} itemsNeededForDeal={itemsNeededForDeal}/>
       <RedirectToCart />
