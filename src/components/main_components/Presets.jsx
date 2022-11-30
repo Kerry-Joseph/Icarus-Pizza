@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
+import './presets.scss'
+
 export default function Presets({ presets }) {
 
   const [filter, setFilter] = useState({text:''})

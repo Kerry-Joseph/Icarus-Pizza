@@ -1,0 +1,28 @@
+// media 
+$md: 768px;
+$lg: 1024px;
+
+// brand color
+$icarus-red: #B80C09;
+$icarus-yellow: #EAC435;
+
+@mixin red-button {
+  border: black solid 2px;
+  background-color: $icarus-red;
+  color: white;
+  border-radius: .4rem;
+}
+
+@mixin yellow-button {
+  border: black solid 2px;
+  background-color: $icarus-yellow;
+  color: black;
+  border-radius: .4rem;
+}
+
+@mixin title {
+  font-size: 2rem;
+  padding: .3rem;
+  margin: 1rem;
+  border-bottom: $icarus-red solid 1px;
+}

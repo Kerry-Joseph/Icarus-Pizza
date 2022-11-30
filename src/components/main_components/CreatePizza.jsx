@@ -86,9 +86,9 @@ export default function Pizza({ createPreset }){
 
     for(const topping in object){
       if(object[topping] > 1){
-        toppingsArr.push(`${topping} x${object[topping]}`)
+        toppingsArr.push(`${topping === 'black_olives' ? 'Black Olives' : topping} x${object[topping]}`)
       } else if(object[topping] > 0) {
-        toppingsArr.push(`${topping}`)
+        toppingsArr.push(`${topping === 'black_olives' ? 'Black Olives' : topping}`)
       }
     }
     return toppingsArr.join(', ')

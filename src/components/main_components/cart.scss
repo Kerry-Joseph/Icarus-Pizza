@@ -1,0 +1,126 @@
+// media 
+$md: 768px;
+$lg: 1024px;
+
+// brand color
+$icarus-red: #B80C09;
+$icarus-yellow: #EAC435;
+
+@mixin red-button {
+  border: black solid 2px;
+  background-color: $icarus-red;
+  color: white;
+  border-radius: .4rem;
+}
+
+@mixin yellow-button {
+  border: black solid 2px;
+  background-color: $icarus-yellow;
+  color: black;
+  border-radius: .4rem;
+}
+
+@mixin title {
+  font-size: 2rem;
+  padding: .3rem;
+  margin: 1rem;
+  border-bottom: $icarus-red solid 1px;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 1280px;
+
+  @media (min-width: $lg) {
+    display: grid;
+    grid-template-columns: 1fr 25rem;
+  }
+}
+
+.cart__clear-cart-button {
+  @include yellow-button;
+  margin: 1.2rem;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cart__delivery-button {
+  @include yellow-button;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.cart__orders-container {
+  margin: 1rem;
+  padding: .5rem;
+  border: black 1px solid;
+  border-radius: 7px;
+
+  @media (min-width: $lg) {
+    grid-column: 1 / span 1;
+    height: 35rem;
+    min-width: 40rem;
+    overflow-y: auto;
+
+  }
+}
+
+.cart__order {
+  border-bottom: solid 1px rgba(0,0,0,.5);
+  position: relative;
+
+  
+
+  > h1 {
+    font-size: 1.5rem;
+  }
+
+  .order__price {
+    font-size: 1.2rem
+  }
+
+  > button {
+    @include red-button;
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: .2rem 1rem;
+  }
+}
+
+.cart__total {
+  margin: 1rem;
+  padding: .5rem;
+  border: black 1px solid;
+  border-radius: 7px;
+
+  @media (min-width: $lg) {
+    grid-column: 2 / span 1;
+    max-width: 20rem;
+    height: fit-content;
+    align-self: end;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cart__total--complete {
+    border-top:1px solid rgba(0,0,0,.5) ;
+    padding-top: 1rem;
+  }
+}
+
+.cart__checkout-button {
+  @include red-button;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 700;
+}

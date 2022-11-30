@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react" 
 
+import './cart.scss'
+
 export default function Cart() {
   const parsedCart = localStorage.cart ? JSON.parse(localStorage.cart) : []
 
@@ -14,14 +16,9 @@ export default function Cart() {
   }
 
 
-  const Orders = () => {  
-    return parsedCart.map(item => (
-      Order(item)
-    ))
-  }
-
-
-
+  
+  
+  
   
   const getSubtotal = () => {
     setSubtotal(0)
@@ -33,64 +30,63 @@ export default function Cart() {
   useEffect(() => {
     getSubtotal()
   }, [parsedCart])
-
+  
   const tax = Math.round((subtotal * .0269) * 100)/100
   const subtotalWithTax = (Math.round(tax * 100)/100) + subtotal
   const subtotalTaxAndDeliveryFee = Math.round((subtotalWithTax + deliveryFee) * 100)/100
 
-
-
+  
+  
   // COMPONENTS ---- 
+  
+  const Orders = () => {  
+    return parsedCart.map(item => (
+      Order(item)
+    ))
+  }
+
 
   const Order = (item) => {
     if(item.type === 'preset'){
       return (
-        <div key={item.id}>
-          <h1>{item.name}</h1>
-          <p>pizza preset</p>
+        <div key={item.id} className='cart__order'>
+          <h1>{item.name} | Pizza Preset</h1>
           <p>{item.content}</p>
-          <p>{item.price}</p>
-          <button onClick={() => localStorage.cart = ''}>clear</button>
+          <p className="order__price">{item.price}$</p>
           <button onClick={() => deleteItem(item.id)}>delete</button>
         </div>
       )
     } else if(item.type === 'personal pizza'){
       return (
-        <div key={item.id}>
+        <div key={item.id} className='cart__order'>
           <h1>Personal Pizza</h1>
           <p>{item.content}</p>
-          <p>{item.price}</p>
-          <button onClick={() => localStorage.cart = ''}>clear</button>
+          <p className="order__price">{item.price}$</p>
           <button onClick={() => deleteItem(item.id)}>delete</button>
         </div>
       )
     } else if(item.type === 'deal'){
       return(
-        <div key={item.id}>
+        <div key={item.id} className='cart__order'>
           <h1>{item.name} Deal</h1>
           <p>{item.content.join(', ')}</p>
-          <p>{item.price}</p>
-          <button onClick={() => localStorage.cart = ''}>clear</button>
+          <p className="order__price">{item.price}$</p>          
           <button onClick={() => deleteItem(item.id)}>delete</button>
         </div>
       )
     } else if(item.type === 'pizza' || item.type === 'wings'){
       return(
-        <div key={item.id}>
-          <h1><span>{item.size}</span> {item.name}</h1>
-          <p>{item.quantity}</p>
-          <p>{item.price}</p>
-          <button onClick={() => localStorage.cart = ''}>clear</button>
+        <div key={item.id} className='cart__order'>
+          <h1><span>{item.size}</span> {item.name}{item.quantity > 1 ? `, x${item.quantity}` : ''}</h1>
+          <p className="order__price">{item.price}$</p>
           <button onClick={() => deleteItem(item.id)}>delete</button>
         </div>
       )
     } else {
       return (
-        <div key={item.id}>
-          <h1>{item.name}</h1>
-          <p>{item.quantity}</p>
-          <p>{item.price}</p>
-          <button onClick={() => localStorage.cart = ''}>clear</button>
+        <div key={item.id} className='cart__order'>
+          <h1>{item.name}{item.quantity > 1 ? `, x${item.quantity}` : ''}</h1>
+          <p className="order__price">{item.price}$</p>
           <button onClick={() => deleteItem(item.id)}>delete</button>
         </div>
       )
@@ -100,29 +96,47 @@ export default function Cart() {
 
 
   return (
-    <div>
-      <button onClick={() => {deliveryFee ? setDeliveryFee(0) : setDeliveryFee(4.99)}}>Switch Delivery</button>
-      <h2>
-        subtotal
-        ${subtotal}
-      </h2>
-      <h2>
-        tax
-        ${tax}
-      </h2>
-      <h2>
-        subtotal and tax 
-        ${subtotalWithTax}
-      </h2>
-      <h2>
-        delivery fee
-        ${deliveryFee}
-      </h2>
-      <h2>
-        subtotal and tax and delivery fee
-        ${subtotalTaxAndDeliveryFee}
-      </h2>
-      <Orders />
+    <div className="cart">
+      <button onClick={() => localStorage.cart = ''} className='cart__clear-cart-button'>
+        Clear Cart
+      </button>
+
+      <div className="cart__orders-container">
+        <Orders />
+      </div>
+      <div className="cart__total">
+        <button 
+          onClick={() => {deliveryFee ? setDeliveryFee(0) : setDeliveryFee(4.99)}}
+          className='cart__delivery-button'
+          style={deliveryFee ? {backgroundColor: 'lightgreen'} : {}}>
+          {deliveryFee ? 'Delivery' : 'Switch to delivery'}
+        </button>
+        <h2>
+          Subtotal:
+          <span>
+            ${Math.round((subtotal) * 100)/100} 
+          </span>
+        </h2>
+        <h2>
+          Tax:
+          <span>
+            ${tax}
+          </span>
+        </h2>
+        <h2 style={deliveryFee ? {} : {display: 'none'}}>
+          Delivery Fee:
+          <span>
+            ${deliveryFee}
+          </span>
+        </h2>
+        <h2 className="cart__total--complete">
+          Total:
+          <span>
+            ${subtotalTaxAndDeliveryFee}
+          </span>
+        </h2>
+        <button className="cart__checkout-button">Checkout</button>
+      </div>
     </div>
   )
 }
