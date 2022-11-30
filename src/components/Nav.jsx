@@ -1,8 +1,18 @@
 import './nav.scss'
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
 export default function Nav() {
 
+  const [cartQuantity, setCartQuantity] = useState(0)
+
+  useEffect(() => {
+    if(localStorage.cart === ''){
+      setCartQuantity(0)
+    } else {
+      setCartQuantity(JSON.parse(localStorage.cart).length)
+    }
+  }, [cartQuantity])
 
   const showDropdown = () => {
     const dropdown = document.querySelector('.nav-dropdown')
@@ -27,12 +37,12 @@ export default function Nav() {
         <Link className='router-link' to='/deals'>
           <li>Deals</li>
         </Link>
-        <Link className='router-link' to='rewards'>
+        <Link className='router-link' to=''>
           <li>Rewards</li>
         </Link>
         <Link className='router-link' to='cart'>
           <li className='nav-dropdown--cart'>
-            Cart 
+            {cartQuantity === 0 ? 'cart' :  cartQuantity}
             <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart" />
           </li>
         </Link>

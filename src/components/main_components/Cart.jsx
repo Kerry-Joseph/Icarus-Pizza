@@ -53,7 +53,7 @@ export default function Cart() {
           <h1>{item.name} | Pizza Preset</h1>
           <p>{item.content}</p>
           <p className="order__price">{item.price}$</p>
-          <button onClick={() => deleteItem(item.id)}>delete</button>
+          <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
         </div>
       )
     } else if(item.type === 'personal pizza'){
@@ -62,7 +62,7 @@ export default function Cart() {
           <h1>Personal Pizza</h1>
           <p>{item.content}</p>
           <p className="order__price">{item.price}$</p>
-          <button onClick={() => deleteItem(item.id)}>delete</button>
+          <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
         </div>
       )
     } else if(item.type === 'deal'){
@@ -71,7 +71,7 @@ export default function Cart() {
           <h1>{item.name} Deal</h1>
           <p>{item.content.join(', ')}</p>
           <p className="order__price">{item.price}$</p>          
-          <button onClick={() => deleteItem(item.id)}>delete</button>
+          <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
         </div>
       )
     } else if(item.type === 'pizza' || item.type === 'wings'){
@@ -79,7 +79,7 @@ export default function Cart() {
         <div key={item.id} className='cart__order'>
           <h1><span>{item.size}</span> {item.name}{item.quantity > 1 ? `, x${item.quantity}` : ''}</h1>
           <p className="order__price">{item.price}$</p>
-          <button onClick={() => deleteItem(item.id)}>delete</button>
+          <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
         </div>
       )
     } else {
@@ -87,7 +87,7 @@ export default function Cart() {
         <div key={item.id} className='cart__order'>
           <h1>{item.name}{item.quantity > 1 ? `, x${item.quantity}` : ''}</h1>
           <p className="order__price">{item.price}$</p>
-          <button onClick={() => deleteItem(item.id)}>delete</button>
+          <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
         </div>
       )
     }
@@ -102,7 +102,7 @@ export default function Cart() {
       </button>
 
       <div className="cart__orders-container">
-        <Orders />
+        {localStorage.cart === '' ? 'Your cart is empty' : <Orders />}
       </div>
       <div className="cart__total">
         <button 

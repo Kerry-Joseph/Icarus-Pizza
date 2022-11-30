@@ -24,7 +24,7 @@ $icarus-yellow: #EAC435;
   font-size: 2rem;
   padding: .3rem;
   margin: 1rem;
-  border-bottom: $icarus-red solid 1px;
+  border-bottom: $icarus-red solid 2px;
 }
 
 
@@ -36,10 +36,7 @@ $icarus-yellow: #EAC435;
 }
 
 .deals__title {
-  border-bottom: $icarus-red solid 1px;
-  font-size: 2rem;
-  padding: .3rem;
-  margin: 1rem;
+  @include title;
 }
 
 .deals-container {
@@ -82,32 +79,29 @@ $icarus-yellow: #EAC435;
   max-width: 1280px;
   display: flex;
   flex-direction: column;
-
   align-items: center;
 
 
   .selected-deal-title {
     @include title;
     margin-bottom: 2rem;
+    align-self: flex-start;
 
-    @media (min-width: $md) {
-      align-self: flex-start;
-      width: 100%;
-    }
   }
 
   > section {
-    
+    width: 100%;
     @media (min-width: $md) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       margin: 3rem 0;
       position: relative;
-      width: 100%;
     }
 
+    // section title
     h2 {
       @include title;
+      border-bottom: $icarus-red solid 1px;
 
       @media (min-width: $md) {
         position: absolute;
@@ -123,6 +117,7 @@ $icarus-yellow: #EAC435;
     font-weight: 600;
     font-size: 2rem;
     padding: 1rem 0;
+    width: 85%;
 
     @media (min-width: $md) {
       padding: 1rem 4rem;
@@ -133,8 +128,14 @@ $icarus-yellow: #EAC435;
   .selected-deal__price {
     font-weight: 700;
     font-size: 2rem;
+    left: 1rem;
     position: absolute;
-    right: 4rem;
-    top: 5.6rem
+    top: 8.5rem;
+
+    @media (min-width: $md) {
+      position: relative;
+      left: 3rem;
+      top: 0
+    }
   }
 }
