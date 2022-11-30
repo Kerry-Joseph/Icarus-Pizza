@@ -13,9 +13,10 @@ export default function Home({ menuData }) {
           Order Now
       </Link>
 
-      <Link to='/deals' className='router-link home__featured-deal'>
+      <Link to='/deals/Barry B BBQ' className='router-link home__featured-deal'>
           <h1>Featured Deal</h1>
-          <h2>Tom's Test Deal</h2>
+          <h2>Barry B BBQ</h2>
+          <p>Three 10pc Honey BBQ Wings, three Sides, and a bottle of water</p>
       </Link>
 
       <section className='home_popular-items-section'>
