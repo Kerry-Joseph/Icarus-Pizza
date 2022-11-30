@@ -28,6 +28,27 @@ $icarus-yellow: #EAC435;
   }
 }
 
+.menu-item__price {
+  position: absolute;
+  bottom: 3.2rem;
+  font-weight: 600;
+  right: 1rem;
+  font-size: 1.3rem;
+}
+
+.menu-item__price-in-options {
+  position: absolute;
+  top: -2rem;
+  right: 2rem;
+  color: lightgreen;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(0,0,0,1) 0%, transparent 70%);
+  padding: .5rem;
+  text-shadow: 1px 1px 2px black;
+}
+
 .order-options {
   background: linear-gradient(to bottom, transparent, rgba(0,0,0,.75) 40%);
   position: absolute;
@@ -85,6 +106,7 @@ $icarus-yellow: #EAC435;
     font-weight: 600;
     padding: .5rem 0;
     width: 90%;
+    z-index: 20;
   }
 }
 

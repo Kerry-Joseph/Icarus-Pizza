@@ -22,6 +22,7 @@ export default function MenuItem({ item }) {
     }
   }
 
+
   const addToCart = () => {
     if(localStorage.cart === ''){
       localStorage.cart = JSON.stringify([{
@@ -58,6 +59,7 @@ export default function MenuItem({ item }) {
         <button className='order-options--add-to-cart' onClick={addToCart}>
           add to cart
         </button>
+        <span className='menu-item__price-in-options'>{Math.round((itemPrice * itemQuantity) * 100)/100}$</span>
         <div className='order-options--quantity-buttons'>
           <button onClick={() => (setItemQuantity(prev => prev + 1))} disabled={maximumQuantity()}>
             +
@@ -95,6 +97,7 @@ export default function MenuItem({ item }) {
     <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openOrderOptions}>
       <h1>{item.name}</h1>
       <p>{item.description}</p>
+      <span className='menu-item__price'>{item.price}$</span>
       {!orderedState ? NotOrdered() : Ordered()}
     </div>
   )
