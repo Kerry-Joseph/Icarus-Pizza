@@ -1,6 +1,6 @@
 import RequiredItemSelections from "./RequiredItemSelections"
 import { useParams, Navigate } from "react-router-dom"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 
 
 export default function SelectedDeal({ deals, menu }) {
@@ -24,6 +24,20 @@ export default function SelectedDeal({ deals, menu }) {
   })
 
   const [allRequiredItemsSelected, setAllRequiredItemsSelected] = useState(false)
+
+  const [dealPrice, setDealPrice] = useState(null)
+    
+  const priceSplit = selectedDeal.price.toString().split('.')
+
+  useEffect(()=> {
+    setDealPrice(prev => {
+      if(priceSplit[1].length === 1){
+        return [priceSplit[0], `${priceSplit[1]}0`].join('.')
+      } else {
+        return selectedDeal.price
+      }
+    })
+  })
  
   const addDealToCart = () => {
     if(!Object.values(itemsNeededForDeal).includes(false)){
@@ -83,7 +97,7 @@ export default function SelectedDeal({ deals, menu }) {
     <div className="selected-deal" >
       <h1 className="selected-deal-title">
         {dealName} Deal
-        <span className="selected-deal__price">{selectedDeal.price}$</span>
+        <span className="selected-deal__price">{dealPrice}$</span>
       </h1>
       <section className="deal-section--pizza" ref={sections.pizza} style={removeSectionNameIfNotRequired('pizza')}>
         <h2>Pizza</h2>

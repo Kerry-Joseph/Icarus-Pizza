@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function ExtraOptionsBasedOnItemType({ item, setItemPrice, setSizeState, reqState }) {
+export default function ExtraOptionsBasedOnItemType({ item, setDynamicItemPrice, setSizeState, reqState }) {
 
   const [activeButton, setActiveButton] = useState({sm:false, md:true, lg:false})
 
@@ -78,28 +78,28 @@ export default function ExtraOptionsBasedOnItemType({ item, setItemPrice, setSiz
 
   const itemPriceForLarge = () => {
     if(type === 'pizza'){
-      setItemPrice(item.price + 2)
+      setDynamicItemPrice(item.price + 2)
       setSizeState('Large')
     } else {
-      setItemPrice(item.price + 1)
+      setDynamicItemPrice(item.price + 1)
       setSizeState('10 Piece')
     }
   }
   const itemPriceForSmall = () => {
     if(type === 'pizza'){
-      setItemPrice(item.price - 2)
+      setDynamicItemPrice(item.price - 2)
       setSizeState('Small')
     } else {
-      setItemPrice(item.price - 1)
+      setDynamicItemPrice(item.price - 1)
       setSizeState('4 Piece')
     }
   }
   const itemPriceForMedium = () => {
     if(type === 'pizza'){
-      setItemPrice(item.price)
+      setDynamicItemPrice(item.price)
       setSizeState('Medium')
     } else {
-      setItemPrice(item.price)
+      setDynamicItemPrice(item.price)
       setSizeState('6 Piece')
     }
   }

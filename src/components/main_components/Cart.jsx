@@ -97,7 +97,7 @@ export default function Cart() {
 
   return (
     <div className="cart">
-      <button onClick={() => localStorage.cart = ''} className='cart__clear-cart-button'>
+      <button onClick={() => {localStorage.cart = ''; window.location.reload()}} className='cart__clear-cart-button'>
         Clear Cart
       </button>
 

@@ -1,13 +1,13 @@
 import './menu-item.scss'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import ExtraOptionsBasedOnItemType from './ExtraOptionsBasedOnItemType'
 
 export default function MenuItem({ item }) {
   const [itemQuantity, setItemQuantity] = useState(0)
-  const [itemPrice, setItemPrice] = useState(item.price)
+  const [dynamicItemPrice, setDynamicItemPrice] = useState(item.price)
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' ? 'Medium' : '6 Piece')
   const [orderedState, setOrderedState] = useState(false)
 
@@ -30,7 +30,7 @@ export default function MenuItem({ item }) {
         name : item.name,
         size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
         quantity : itemQuantity,
-        price : Math.round((itemPrice * itemQuantity) * 100)/100,
+        price : Math.round((dynamicItemPrice * itemQuantity) * 100)/100,
         id : Math.random()
        }])
        setOrderedState(true)
@@ -40,7 +40,7 @@ export default function MenuItem({ item }) {
         name : item.name,
         size : (item.itemType === 'pizza' || item.itemType === 'wings' ? sizeState : undefined),
         quantity : itemQuantity,
-        price : Math.round((itemPrice * itemQuantity) * 100)/100,
+        price : Math.round((dynamicItemPrice * itemQuantity) * 100)/100,
         id : Math.random()
       }])
       setOrderedState(true)
@@ -48,8 +48,19 @@ export default function MenuItem({ item }) {
   }
 
 
+  const priceSplit = item.price.toString().split('.')
 
-
+  const [itemPrice, setItemPrice] = useState(item.price)
+    
+    useEffect(()=> {
+      setItemPrice(prev => {
+        if(priceSplit[1].length === 1){
+          return [priceSplit[0], `${priceSplit[1]}0`].join('.')
+        } else {
+          return item.price
+        }
+      })
+    })
 
   // COMPONENTS ------
   
@@ -59,7 +70,7 @@ export default function MenuItem({ item }) {
         <button className='order-options--add-to-cart' onClick={addToCart}>
           add to cart
         </button>
-        <span className='menu-item__price-in-options'>{Math.round((itemPrice * itemQuantity) * 100)/100}$</span>
+        <span className='menu-item__price-in-options'>{Math.round((dynamicItemPrice * itemQuantity) * 100)/100}$</span>
         <div className='order-options--quantity-buttons'>
           <button onClick={() => (setItemQuantity(prev => prev + 1))} disabled={maximumQuantity()}>
             +
@@ -71,7 +82,7 @@ export default function MenuItem({ item }) {
         </div>
         <ExtraOptionsBasedOnItemType 
           item={item} 
-          setItemPrice={setItemPrice} 
+          setDynamicItemPrice={setDynamicItemPrice} 
           setSizeState={setSizeState}/>
       </div>
     )
@@ -92,12 +103,11 @@ export default function MenuItem({ item }) {
   }
 
 
-
   return (
-    <div className="menu-item" style={{backgroundImage: `url(${item.img})`}} onClick={openOrderOptions}>
+    <div className={`menu-item menu-item--${item.name.replaceAll(' ', '-')}`} style={{backgroundImage: `url(${item.img})`}} onClick={openOrderOptions}>
       <h1>{item.name}</h1>
       <p>{item.description}</p>
-      <span className='menu-item__price'>{item.price}$</span>
+      <span className='menu-item__price'>{itemPrice}$</span>
       {!orderedState ? NotOrdered() : Ordered()}
     </div>
   )
