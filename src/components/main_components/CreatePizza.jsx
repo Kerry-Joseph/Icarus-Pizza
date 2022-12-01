@@ -7,7 +7,7 @@ export default function Pizza({ createPreset }){
   const [crustPrice, setCrustPrice] = useState(0)
   const [sizePrice, setSizePrice] = useState(0)
   const [presetDiv, setPresetDiv] = useState(false)
-  const [redirdect, setRedirect] = useState(false)
+  const [presetSubmitted, setPresetSubmitted] = useState(false)
   
   // pizza state
   const [pizza, setPizza] = useState(
@@ -117,11 +117,11 @@ export default function Pizza({ createPreset }){
 
 
   // for the create preset form text input
-  const handleChange = e => {
-    setPizza(prev => ({
-        ...prev, name: e.target.value
-    }))
-  }
+  // const handleChange = e => {
+  //   setPizza(prev => ({
+  //       ...prev, name: e.target.value
+  //   }))
+  // }
 
 
 
@@ -178,6 +178,34 @@ export default function Pizza({ createPreset }){
     )
   }
 
+
+  const PresetForm = () => {
+
+    const [formText, setFromText] = useState({text : ''})
+
+    const handleChange = e => {
+      setFromText(prev => ({
+          ...prev, text: e.target.value
+      }))
+    }
+
+    
+    return (
+      <form className='create-pizza__create-preset-form' onSubmit={e => {createPreset({...pizza, name : formText.text}); e.preventDefault(); setPresetSubmitted(true)}} style={!presetDiv ? {display:'none'} : {display:'block'}}>
+        <h1>Name Preset</h1>
+        <div>
+          <input type="text" value={formText.text} onChange={handleChange}/>
+          <input type="submit" value="submit" />
+        </div>
+        <p>*preset name must be unique*</p>
+      </form>
+    )
+  }
+
+  const PresetSubmittedText = () => {
+    return <h1>Preset Submitted</h1>
+  }
+
   
   return (
     <main className='create-pizza'>
@@ -231,15 +259,7 @@ export default function Pizza({ createPreset }){
       <button className='create-pizza__open-create-preset' onClick={() => setPresetDiv(true)} style={presetDiv ? {display:'none'} : {display:'block'}}>
         create preset
       </button>
-      <form className='create-pizza__create-preset-form' onSubmit={e => {createPreset(pizza); e.preventDefault(); setRedirect(true)}} style={!presetDiv ? {display:'none'} : {display:'block'}}>
-        <h1>Name Preset</h1>
-        <div>
-          <input type="text" value={pizza.name} onChange={handleChange}/>
-          <input type="submit" value="submit" />
-        </div>
-        <p>*preset name must be unique*</p>
-      </form>
-      {redirdect ? <Navigate to='/pizza-presets' replace={true} /> : ''}
+      {presetSubmitted ? <PresetSubmittedText /> : <PresetForm />}
     </main>
   )
 }

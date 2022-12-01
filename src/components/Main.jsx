@@ -59,7 +59,7 @@ export default function Main() {
         headers: {
           "Content-Type": "Application/json"
         },
-        body: JSON.stringify(preset)
+        body: JSON.stringify(preset), 
       })
     } catch(err) {
       console.log('failed to make post request for preset')
