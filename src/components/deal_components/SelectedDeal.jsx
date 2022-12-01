@@ -99,6 +99,9 @@ export default function SelectedDeal({ deals, menu }) {
         {dealName} Deal
         <span className="selected-deal__price">{dealPrice}$</span>
       </h1>
+      <h2 className="selected-deal-sub-title">
+        Select Deal Content
+      </h2>
       <section className="deal-section--pizza" ref={sections.pizza} style={removeSectionNameIfNotRequired('pizza')}>
         <h2>Pizza</h2>
         <RequiredItemSelections 

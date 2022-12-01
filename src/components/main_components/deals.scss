@@ -94,7 +94,16 @@ $icarus-yellow: #EAC435;
     @include title;
     margin-bottom: 2rem;
     align-self: flex-start;
+  }
 
+  .selected-deal-sub-title {
+    @include title;
+    margin: 2rem 0;
+    width: 100%;
+
+    @media (min-width: $md) {
+      border-bottom: $icarus-red 4px solid;
+    }
   }
 
   > section {
@@ -136,7 +145,7 @@ $icarus-yellow: #EAC435;
   .selected-deal__price {
     font-weight: 700;
     font-size: 2rem;
-    left: 1rem;
+    right: 1rem;
     position: absolute;
     top: 8.5rem;
 
