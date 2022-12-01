@@ -9,6 +9,7 @@ export default function Deals({ deals })  {
 
   const DealComponent = ({ deal }) => {
     
+    // adds 0 to end of price if it ends in the tenth place
     const priceSplit = deal.price.toString().split('.')
     const [dealPrice, setDealPrice] = useState(null)
     
@@ -22,9 +23,11 @@ export default function Deals({ deals })  {
       })
     })
 
+
+    
     return (
       <Link to={`/deals/${deal.name}`} style={{textDecoration : 'none'}}>
-        <div className='deal-component'>
+        <div className={`deal-component deal-component--${deal.name.replaceAll(' ', '-')}`} style={{background: `url(${deal.img})`}}>
           <h1>{deal.name}</h1>
           <p className='deal-component__price'>{dealPrice}$</p>
           <p className='deal-component__description'>{deal.description}</p>

@@ -83,7 +83,8 @@ export default function Main() {
         <Routes>
           <Route path='/' element={
             <Home 
-              menuData = {menuData} />
+              menuData = {menuData}
+              dealsData = {dealsData} />
           }/>
           
           <Route path='/menu' element={

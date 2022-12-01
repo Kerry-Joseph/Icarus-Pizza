@@ -48,6 +48,8 @@ export default function MenuItem({ item }) {
   }
 
 
+
+  // adds 0 to end of price if it ends in the tenth place
   const priceSplit = item.price.toString().split('.')
 
   const [itemPrice, setItemPrice] = useState(item.price)
@@ -61,6 +63,8 @@ export default function MenuItem({ item }) {
         }
       })
     })
+
+    
 
   // COMPONENTS ------
   
