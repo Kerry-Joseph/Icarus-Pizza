@@ -70,11 +70,11 @@ export default function Presets({ presets }) {
     }
     
     return (
-      <Link to="/cart" onClick={addPresetToCart}>
+      <Link to="/cart" onClick={addPresetToCart} className='preset-component'>
         <h1>{preset.name}</h1>
-        <p>Size: {preset.size}</p>
-        <p>Crust: {preset.crust}</p>
-        <p>Toppings: {toppingsString()}</p>
+        <p><span>Size:</span> {preset.size}</p>
+        <p><span>Crust:</span> {preset.crust}</p>
+        <p><span>Toppings:</span> {toppingsString() === '' ? 'None' : toppingsString()}</p>
       </Link>
     )
   }
@@ -84,11 +84,13 @@ export default function Presets({ presets }) {
 
   
   return (
-    <main style={{display: 'flex', flexDirection: 'column'}}>
-      <form>
-        <input type="text" value={filter.text} onChange={handleChange} />
+    <main className="presets-page">
+      <form className='presets-search-form'>
+        <input type="text" value={filter.text} onChange={handleChange} placeholder='Search Preset...'/>
       </form>
-      <AllPresets />
+      <div className="presets-container">
+        <AllPresets />
+      </div>
     </main>
   )
 }
