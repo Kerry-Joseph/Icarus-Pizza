@@ -8,7 +8,6 @@ React.js | HTML/JSX | SCSS | Node.js | Mongoose | MongoDB | Express.js
 
 ## Known Issues
 - Cart in nav only changes on refresh
-- Unable to choose toppings on the create pizza page
 
 # [**Go To Icarus Pizza**](https://icarus-pizza.vercel.app/)
 
