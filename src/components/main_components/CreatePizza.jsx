@@ -51,12 +51,13 @@ export default function Pizza({ createPreset }){
 
 
   const increaseTopping = (topping) => {
-    if(pizza.toppings[topping] < 10){
+    const pizzaToppingState = pizza.toppings[topping]
+    if(pizzaToppingState < 10){
       setPizza(prev => ({
         ...prev,
         toppings : {
           ...prev.toppings,
-          [topping] : prev.toppings[topping]++
+          [topping] : prev.toppings[topping] + 1
         }
       }))
     } else {
@@ -69,7 +70,7 @@ export default function Pizza({ createPreset }){
         ...prev,
         toppings : {
           ...prev.toppings,
-          [topping] : prev.toppings[topping]--
+          [topping] : prev.toppings[topping] - 1
         }
       }))
     } else {
@@ -113,15 +114,6 @@ export default function Pizza({ createPreset }){
       }])
     }
   }
-
-
-
-  // for the create preset form text input
-  // const handleChange = e => {
-  //   setPizza(prev => ({
-  //       ...prev, name: e.target.value
-  //   }))
-  // }
 
 
 

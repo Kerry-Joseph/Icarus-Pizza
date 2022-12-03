@@ -62,7 +62,7 @@ export default function MenuItem({ item }) {
           return item.price
         }
       })
-    })
+    }, [priceSplit, item.price])
 
     
 

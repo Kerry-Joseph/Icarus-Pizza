@@ -11,6 +11,7 @@ import CreatePizza from './main_components/CreatePizza'
 import Presets from './main_components/Presets'
 
 import '../index.scss'
+import { useCallback } from 'react'
 
 export default function Main() {
 
@@ -22,7 +23,7 @@ export default function Main() {
   const { REACT_APP_MENU_URL, REACT_APP_DEALS_URL, REACT_APP_CREATE_PRESET_URL, REACT_APP_PRESETS_URL } = process.env
 
   // API ---
-  const fetchMenu = async() => {
+  const fetchMenu = useCallback(async() => {
     try {
       const res = await fetch(REACT_APP_MENU_URL)
       const data = await res.json()
@@ -30,9 +31,9 @@ export default function Main() {
     } catch (err) {
       console.log('failed to fetch menu')
     }
-  }
+  }, [REACT_APP_MENU_URL])
 
-  const fetchDeals = async() => {
+  const fetchDeals = useCallback(async() => {
     try {
       const res = await fetch(REACT_APP_DEALS_URL)
       const data = await res.json()
@@ -40,9 +41,9 @@ export default function Main() {
     } catch(err) {
       console.log('failed to fetch deals')      
     }
-  }
+  }, [REACT_APP_DEALS_URL])
 
-  const fetchPresets = async() => {
+  const fetchPresets = useCallback(async() => {
     try {
       const res = await fetch(REACT_APP_PRESETS_URL)
       const data = await res.json()
@@ -50,7 +51,7 @@ export default function Main() {
     } catch(err) {
       console.log('failed to fetch presets')      
     }
-  }
+  }, [REACT_APP_PRESETS_URL])
 
   const createPreset = async(preset) => {
     try {
@@ -72,7 +73,7 @@ export default function Main() {
     fetchMenu()
     fetchDeals()
     fetchPresets()
-  },[])
+  },[fetchMenu, fetchDeals, fetchPresets])
 
 
 
