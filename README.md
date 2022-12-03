@@ -11,4 +11,4 @@ React.js | HTML/JSX | SCSS | Node.js | Mongoose | MongoDB | Express.js
 
 # [**Go To Icarus Pizza**](https://icarus-pizza.vercel.app/)
 
-[![Icarus Pizza](./public/icarus_screenshot.png)](https://icarus-pizza.vercel.app/
+[![Icarus Pizza](./public/icarus_screenshot.png)](https://icarus-pizza.vercel.app/)
