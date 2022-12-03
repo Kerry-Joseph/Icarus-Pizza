@@ -64,7 +64,8 @@ $icarus-yellow: #EAC435;
   top: 2.4rem;
   font-size: 2rem;
   font-weight: 500;
-  border-bottom: .4rem solid black;
+  border-bottom: .2rem solid black;
+  border-top: .2rem solid black;
   z-index: 20;
   @media (min-width: $md) {
     flex-grow: 1;
@@ -99,6 +100,7 @@ $icarus-yellow: #EAC435;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
     border: .3rem black solid;
     border-radius: .3em;
