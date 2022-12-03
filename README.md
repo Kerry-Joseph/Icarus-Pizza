@@ -10,6 +10,6 @@ React.js | HTML/JSX | SCSS | Node.js | Mongoose | MongoDB | Express.js
 - Cart in nav only changes on refresh
 - Unable to choose toppings on the create pizza page
 
-# [**Go To Freedex**](https://google.com)
+# [**Go To Icarus Pizza**](https://icarus-pizza.vercel.app/)
 
-[![Freedex](./public/icarus_screenshot.png)](https://google.com)
+[![Icarus Pizza](./public/icarus_screenshot.png)](https://icarus-pizza.vercel.app/
