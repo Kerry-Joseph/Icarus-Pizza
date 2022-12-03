@@ -10,6 +10,7 @@ export default function Nav() {
     if(localStorage.cart === ''){
       setCartQuantity(0)
     } else {
+      localStorage.cart = ''
       setCartQuantity(JSON.parse(localStorage.cart).length)
     }
   }, [cartQuantity])
