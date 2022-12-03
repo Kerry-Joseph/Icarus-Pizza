@@ -1,6 +1,6 @@
 import './nav.scss'
 import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Nav() {
 
@@ -15,12 +15,13 @@ export default function Nav() {
     }
   }, [cartQuantity])
 
+  let dropdown = useRef(null)
+  
   const showDropdown = () => {
-    const dropdown = document.querySelector('.nav-dropdown')
-    if(dropdown.style.display === 'none'){
-      dropdown.style.display = 'block'
+    if(dropdown.current.style.display === 'none' || !dropdown.current.style.display){
+      dropdown.current.style.display = 'block'
     } else {
-      dropdown.style.display = 'none'
+      dropdown.current.style.display = 'none'
     }
   }
 
@@ -28,20 +29,20 @@ export default function Nav() {
   // dropdown menu ---
   const Dropdown = () => {
     return (
-      <ul className='nav-dropdown'>
-        <Link className='router-link' to='/'>
+      <ul className='nav-dropdown' ref={dropdown}>
+        <Link className='router-link' to='/' onClick={() => dropdown.current.style.display = 'none'}>
           <li>Home</li>
         </Link>
-        <Link className='router-link' to='/menu'>
+        <Link className='router-link' to='/menu' onClick={() => dropdown.current.style.display = 'none'}>
           <li>Menu</li>
         </Link>
-        <Link className='router-link' to='/deals'>
+        <Link className='router-link' to='/deals' onClick={() => dropdown.current.style.display = 'none'}>
           <li>Deals</li>
         </Link>
-        <Link className='router-link' to=''>
+        <Link className='router-link' to='' onClick={() => dropdown.current.style.display = 'none'}>
           <li>Rewards</li>
         </Link>
-        <Link className='router-link' to='cart'>
+        <Link className='router-link' to='cart' onClick={() => dropdown.current.style.display = 'none'}> 
           <li className='nav-dropdown--cart'>
             {cartQuantity === 0 ? 'cart' :  cartQuantity}
             <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart" />
