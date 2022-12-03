@@ -7,10 +7,10 @@ export default function Nav() {
   const [cartQuantity, setCartQuantity] = useState(0)
 
   useEffect(() => {
-    if(localStorage.cart === ''){
+    if(!localStorage.cart || localStorage.cart === ''){
       setCartQuantity(0)
-    } else {
       localStorage.cart = ''
+    } else {
       setCartQuantity(JSON.parse(localStorage.cart).length)
     }
   }, [cartQuantity])
