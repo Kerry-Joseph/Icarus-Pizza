@@ -75,9 +75,13 @@ $icarus-yellow: #EAC435;
   button {
     @include red-button;
     font-size: 1.7rem;
-    margin: 1rem .5rem 2rem .5rem;
+    margin: 1rem .2rem 2rem .2rem;
     padding: .2rem .4rem;
     font-weight: 600;
+
+    @media (min-width: $md) {
+      margin: 1rem 1rem 2rem 1rem;
+    }
   }
 }
 
