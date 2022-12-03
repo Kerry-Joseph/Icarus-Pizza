@@ -7,7 +7,8 @@ Icarus Pizza is a website where the user can choose pizza and/or item to add to 
 React.js | HTML/JSX | SCSS | Node.js | Mongoose | MongoDB | Express.js
 
 ## Known Issues
-- None currently
+- Cart in nav only changes on refresh
+- Unable to choose toppings on the create pizza page
 
 # [**Go To Freedex**](https://google.com)
 
