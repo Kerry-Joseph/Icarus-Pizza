@@ -29,7 +29,7 @@ export default function Home({ menuData, dealsData }) {
           <MenuItem 
             item = {menuData[1]} />
           <MenuItem 
-            item = {menuData[2]} />
+            item = {menuData[11]} />
           <MenuItem             
             item = {menuData[3]} />
           <MenuItem             
