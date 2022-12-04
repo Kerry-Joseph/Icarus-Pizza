@@ -54,10 +54,11 @@ $icarus-yellow: #EAC435;
 
 
 .nav-dropdown {
+  color: white;
   display: none;
   box-sizing: border-box;
   position: absolute;
-  background: $icarus-red;
+  background: rgba(184, 12, 9, .85);
   list-style: none;
   width: 100%;
   padding: 1rem 2rem;
@@ -117,7 +118,8 @@ $icarus-yellow: #EAC435;
   }
 }
 
-.router-link {
+.nav-link {
   text-decoration: none;
-  color: black;
+  color: white;
 }
+

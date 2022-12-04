@@ -30,19 +30,19 @@ export default function Nav() {
   const Dropdown = () => {
     return (
       <ul className='nav-dropdown' ref={dropdown}>
-        <Link className='router-link' to='/' onClick={() => dropdown.current.style.display = 'none'}>
+        <Link className='nav-link' to='/'>
           <li>Home</li>
         </Link>
-        <Link className='router-link' to='/menu' onClick={() => dropdown.current.style.display = 'none'}>
+        <Link className='nav-link' to='/menu'>
           <li>Menu</li>
         </Link>
-        <Link className='router-link' to='/deals' onClick={() => dropdown.current.style.display = 'none'}>
+        <Link className='nav-link' to='/deals'>
           <li>Deals</li>
         </Link>
-        <Link className='router-link' to='' onClick={() => dropdown.current.style.display = 'none'}>
+        <Link className='nav-link' to=''>
           <li>Rewards</li>
         </Link>
-        <Link className='router-link' to='cart' onClick={() => dropdown.current.style.display = 'none'}> 
+        <Link className='nav-link' to='cart'> 
           <li className='nav-dropdown--cart'>
             {cartQuantity === 0 ? 'cart' :  cartQuantity}
             <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart" />

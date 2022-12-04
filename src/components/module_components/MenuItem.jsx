@@ -108,7 +108,7 @@ export default function MenuItem({ item }) {
 
 
   return (
-    <div className={`menu-item menu-item--${item.name.replaceAll(' ', '-')}`} style={{backgroundImage: `url(${item.img})`}} onClick={openOrderOptions}>
+    <div className={`menu-item menu-item--${item.name.replaceAll(' ', '-')}`} onClick={openOrderOptions} style={itemQuantity > 0 ? {cursor: 'auto', backgroundImage: `url(${item.img})`} : {backgroundImage: `url(${item.img})`}}>
       <h1>{item.name}</h1>
       <p>{item.description}</p>
       <span className='menu-item__price'>{itemPrice}$</span>
