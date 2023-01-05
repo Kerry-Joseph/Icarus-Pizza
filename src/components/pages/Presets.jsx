@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-import './presets.scss'
+import '../../style/pages/presets.scss'
 
 export default function Presets({ presets }) {
 

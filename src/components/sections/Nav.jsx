@@ -1,4 +1,4 @@
-import './nav.scss'
+import '../../style/sections/nav.scss'
 import { Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 

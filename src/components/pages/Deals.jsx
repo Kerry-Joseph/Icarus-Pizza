@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import './deals.scss'
+import '../../style/pages/deals.scss'
 
 export default function Deals({ deals })  {
   
@@ -21,7 +21,7 @@ export default function Deals({ deals })  {
           return deal.price
         }
       })
-    })
+    }, [priceSplit, deal.price])
 
 
     

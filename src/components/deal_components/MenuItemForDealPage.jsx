@@ -1,8 +1,8 @@
-import '../module_components/menu-item.scss'
+import '../../style/small_components/menu-item.scss'
 
 import { useState, useEffect } from 'react'
 
-import ExtraOptionsBasedOnItemType from '../module_components/ExtraOptionsBasedOnItemType'
+import ExtraOptionsBasedOnItemType from '../small_components/ExtraOptionsBasedOnItemType'
 
 // req === REQUIREMENT -+-+-+-+-+-
 export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent, setItemsNeededForDeal, itemsNeededForDeal}) {

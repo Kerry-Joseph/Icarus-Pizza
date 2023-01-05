@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import './create-pizza.scss'
+import '../../style/pages/create-pizza.scss'
 
 export default function Pizza({ createPreset }){
   const [crustPrice, setCrustPrice] = useState(0)

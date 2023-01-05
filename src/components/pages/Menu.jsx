@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 
-import MenuItem from '../module_components/MenuItem'
+import MenuItem from '../small_components/MenuItem'
 
-import './menu.scss'
+import '../../style/pages/menu.scss'
 
 export default function Menu({ menu }) {
 

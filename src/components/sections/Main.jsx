@@ -1,16 +1,18 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
-import Menu from './main_components/Menu'
-import Cart from './main_components/Cart'
-import Rewards from './main_components/Rewards'
-import Deals from './main_components/Deals'
-import Home from './main_components/Home'
-import SelectedDeal from './deal_components/SelectedDeal'
-import CreatePizza from './main_components/CreatePizza'
-import Presets from './main_components/Presets'
+import Menu from '../pages/Menu'
+import Cart from '../pages/Cart'
+import Rewards from '../pages/Rewards'
+import Deals from '../pages/Deals'
+import Home from '../pages/Home'
+import SelectedDeal from '../deal_components/SelectedDeal'
+import CreatePizza from '../pages/CreatePizza'
+import Presets from '../pages/Presets'
 
-import '../index.scss'
+import '../../index.scss'
+
+
 import { useCallback } from 'react'
 
 export default function Main() {

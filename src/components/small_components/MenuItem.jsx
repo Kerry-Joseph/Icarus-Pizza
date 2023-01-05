@@ -1,4 +1,4 @@
-import './menu-item.scss'
+import '../../style/small_components/menu-item.scss'
 
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'

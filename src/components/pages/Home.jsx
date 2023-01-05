@@ -1,8 +1,8 @@
-import './home.scss'
+import '../../style/pages/home.scss'
 
 import { Link } from 'react-router-dom'
 
-import MenuItem from '../module_components/MenuItem'
+import MenuItem from '../small_components/MenuItem'
 
 export default function Home({ menuData, dealsData }) {
 

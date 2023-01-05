@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react" 
 
-import './cart.scss'
+import '../../style/pages/cart.scss'
 
 export default function Cart() {
   const parsedCart = localStorage.cart ? JSON.parse(localStorage.cart) : []
