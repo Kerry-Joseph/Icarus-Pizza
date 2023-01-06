@@ -35,7 +35,7 @@ export default function Presets({ presets }) {
 
     let toppingsArr = []
     const toppingsString = () => {
-  
+      toppingsArr = []
       const object = preset.toppings
   
       for(const topping in object){
@@ -45,6 +45,7 @@ export default function Presets({ presets }) {
           toppingsArr.push(`${topping}`)
         }
       }
+      
   
       return toppingsArr.join(', ')
     }
