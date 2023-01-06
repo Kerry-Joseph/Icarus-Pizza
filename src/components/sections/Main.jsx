@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-
+import { useState, useEffect, useCallback } from 'react'
+// -------------
 import Menu from '../pages/Menu'
 import Cart from '../pages/Cart'
 import Rewards from '../pages/Rewards'
@@ -9,22 +9,17 @@ import Home from '../pages/Home'
 import SelectedDeal from '../deal_components/SelectedDeal'
 import CreatePizza from '../pages/CreatePizza'
 import Presets from '../pages/Presets'
-
+// --------------
 import '../../index.scss'
-
-
-import { useCallback } from 'react'
 
 export default function Main() {
 
-  // STATES ---
   const [menuData, setMenuData] = useState(null)
   const [dealsData, setDealsData] = useState(null)
   const [presetsData, setPresetsData] = useState(null)
 
   const { REACT_APP_MENU_URL, REACT_APP_DEALS_URL, REACT_APP_CREATE_PRESET_URL, REACT_APP_PRESETS_URL } = process.env
 
-  // API ---
   const fetchMenu = useCallback(async() => {
     try {
       const res = await fetch(REACT_APP_MENU_URL)
@@ -70,7 +65,6 @@ export default function Main() {
   }
 
 
-
   useEffect(() => {
     fetchMenu()
     fetchDeals()
@@ -79,11 +73,13 @@ export default function Main() {
 
 
 
-  // LOADED RETURN ---
-  const loaded = () => {
+  // components ----
+
+  function Loaded() {
     return (
       <main className='main'>
         <Routes>
+
           <Route path='/' element={
             <Home 
               menuData = {menuData}
@@ -123,13 +119,14 @@ export default function Main() {
             <Presets
               presets = {presetsData}/>
           }/>
+
         </Routes>
       </main>
     )  
   }
 
 
-  const loading = () => {
+  function Loading() {
     return (
      <main>
       loading...
@@ -140,7 +137,7 @@ export default function Main() {
 
   return (
       <>
-        {dealsData && menuData && presetsData ? loaded() : loading()}
+        {dealsData && menuData && presetsData ? Loaded() : Loading()}
       </>
     )
 
