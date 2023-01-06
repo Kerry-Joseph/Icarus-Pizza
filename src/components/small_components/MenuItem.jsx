@@ -49,26 +49,27 @@ export default function MenuItem({ item }) {
 
 
 
-  // adds 0 to end of price if it ends in the tenth place
-  const priceSplit = item.price.toString().split('.')
-
+  // adds 0s to price string if needed
   const [itemPrice, setItemPrice] = useState(item.price)
-    
-    useEffect(()=> {
-      setItemPrice(prev => {
-        if(priceSplit[1].length === 1){
-          return [priceSplit[0], `${priceSplit[1]}0`].join('.')
+  const splitPrice = itemPrice.toString().includes(".") ? itemPrice.toString().split('.') : false
+  
+  useEffect(()=> {
+    setItemPrice(() => {
+      if(!itemPrice.toString().includes(".")){
+        return `${itemPrice}.00`
+      } else if(splitPrice[1].length === 1){
+          return [splitPrice[0], `${splitPrice[1]}0`].join('.')
         } else {
-          return item.price
+          return itemPrice
         }
       })
-    }, [priceSplit, item.price])
+    }, [itemPrice, splitPrice])
 
     
 
-  // COMPONENTS ------
+  // components ------
   
-  const NotOrdered = () => {
+  function NotOrdered() {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <button className='order-options--add-to-cart' onClick={addToCart}>
@@ -94,7 +95,7 @@ export default function MenuItem({ item }) {
 
 
 
-  const Ordered = () => {
+  function Ordered() {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <button onClick={() => {setOrderedState(false); setItemQuantity(0)}} id='order-options-added--button'>X</button>
