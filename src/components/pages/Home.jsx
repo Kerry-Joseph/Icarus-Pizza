@@ -1,11 +1,10 @@
 import '../../style/pages/home.scss'
-
+// --------------
 import { Link } from 'react-router-dom'
-
-import MenuItem from '../small_components/MenuItem'
+// --------------
+import MenuItem from '../menu_item_components/MenuItem'
 
 export default function Home({ menuData, dealsData }) {
-
   return (
     <div className='home'>
 
@@ -20,9 +19,11 @@ export default function Home({ menuData, dealsData }) {
       </Link>
 
       <section className='home_popular-items-section'>
+
         <h1 className='popular-items__title'>
           Popular Items
         </h1>
+
         <div className='popular-items__content'>
           <MenuItem       
             item = {menuData[0]} />
@@ -35,7 +36,9 @@ export default function Home({ menuData, dealsData }) {
           <MenuItem             
             item = {menuData[4]} />
         </div>
+
       </section>
+
     </div>
   )
 }
