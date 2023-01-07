@@ -26,7 +26,6 @@ export default function Nav() {
     }
   }
 
-
   function Dropdown() {
     return (
       <ul className='nav-dropdown' ref={dropdown}>
@@ -63,7 +62,6 @@ export default function Nav() {
     )
   }
 
-  
   return (
     <div className='outer-nav'>
       <nav className="nav">

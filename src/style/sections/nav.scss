@@ -70,7 +70,7 @@ $icarus-yellow: #EAC435;
   z-index: 20;
   @media (min-width: $md) {
     flex-grow: 1;
-    display: flex;
+    display: flex !important; 
     align-items: center;
     color: black;
     background: $icarus-yellow;
