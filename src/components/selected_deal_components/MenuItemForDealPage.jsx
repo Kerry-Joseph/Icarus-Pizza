@@ -1,11 +1,11 @@
 import '../../style/small_components/menu-item.scss'
-
+// ----------------------
 import { useState, useEffect } from 'react'
-
+// ----------------------
 import ExtraOptionsBasedOnItemType from '../small_components/ExtraOptionsBasedOnItemType'
 
-// req === REQUIREMENT -+-+-+-+-+-
-export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent, setItemsNeededForDeal, itemsNeededForDeal}) {
+// req === REQUIREMENT
+export default function MenuItemForDealPage({ item, setReqState, reqState, dealContent, setItemsNeededForDeal, itemsNeededForDeal }) {
   const [itemQuantity, setItemQuantity] = useState(0)
   const [sizeState, setSizeState] = useState(item.itemType === 'pizza' || item.itemType === 'wings' ? (item.itemType === 'wings' ? '6 piece' : 'Medium') : '')
   const [, setItemPrice] = useState(item.price)
@@ -16,13 +16,11 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   const maximumQuantity = () => reqState.quantity === 0 ? true : false
 
 
-
   // requirement item type shorthand ------------
   const type = reqState.itemType
   // --------------------------------------------
 
   
-
 
   const openItemOptions = () => {
     if(itemQuantity === 0 && reqState.quantity > 0){
@@ -37,7 +35,6 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
 
 
 
-
   useEffect(() => {
     if(reqState.quantity > 0){
       setItemsNeededForDeal(prev => (
@@ -46,7 +43,9 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
     }
   }, [reqState.quantity])
 
+
   const userSelectedItemCartString = `${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`
+
 
   useEffect(() => {
     if(itemsNeededForDeal[type] === true)
@@ -54,9 +53,6 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }, [itemsNeededForDeal[type]])
   
   
-
-
-
 
   const addToDealContent = () => {
     if(reqState.quantity === 0){
@@ -67,7 +63,6 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
       return
     }
   }
-
 
 
 
@@ -84,9 +79,9 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
   }
 
 
-  // COMPONENETS ----
+  // compnents ----
 
-  const NotAddedToDealContent = () => {
+  function NotAddedToDealContent() {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <button className='order-options--add-to-cart' onClick={addToDealContent}>
@@ -112,7 +107,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
 
 
 
-  const AddedToDealContent = () => {
+  function AddedToDealContent() {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <h1 style={{color : 'white'}}>Confirmed!</h1>

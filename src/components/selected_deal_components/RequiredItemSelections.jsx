@@ -1,8 +1,8 @@
 import { useState } from "react"  
-
+// ------------------
 import MenuItemForDealPage from './MenuItemForDealPage'
 
-// req === REQUIREMENT -+-+-+-+-+-
+// req === REQUIREMENT 
 export default function RequiredItemSelections({ selectedDealType, dealContent, selectedDeal, menu, setItemsNeededForDeal ,itemsNeededForDeal }){
   
   const currentReqArr = selectedDeal.requirements.filter(req => req.itemType === selectedDealType)
