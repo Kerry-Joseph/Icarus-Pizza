@@ -1,4 +1,4 @@
-import RequiredItemSelections from "./RequiredItemSelections"
+import RequiredItemSelections from "../selected_deal_components/RequiredItemSelections"
 import { useParams, Navigate } from "react-router-dom"
 import { useState, useRef, useEffect } from "react"
 
@@ -83,7 +83,7 @@ export default function SelectedDeal({ deals, menu }) {
     }
   }
 
-  // COMPONENTS ----
+  // components ----
 
   const RedirectToCart = () => {
     if(allRequiredItemsSelected === true){

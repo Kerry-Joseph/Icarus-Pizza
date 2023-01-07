@@ -6,7 +6,7 @@ import Cart from '../pages/Cart'
 import Rewards from '../pages/Rewards'
 import Deals from '../pages/Deals'
 import Home from '../pages/Home'
-import SelectedDeal from '../deal_components/SelectedDeal'
+import SelectedDeal from '../pages/SelectedDeal'
 import CreatePizza from '../pages/CreatePizza'
 import Presets from '../pages/Presets'
 // --------------
