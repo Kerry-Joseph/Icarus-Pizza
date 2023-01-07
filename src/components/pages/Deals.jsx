@@ -1,6 +1,6 @@
 import '../../style/pages/deals.scss'
 // -------------------
-import DealsContainer from '../deal_components/DealsContainer'
+import DealsContainer from '../components/deal_components/DealsContainer'
 
 export default function Deals({ deals })  {
 

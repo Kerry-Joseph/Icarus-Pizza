@@ -2,7 +2,7 @@ import { useState } from "react"
 // --------------------
 import '../../style/pages/presets.scss'
 // --------------------
-import PresetsContainer from '../presets_components/PresetsContainer'
+import PresetsContainer from '../components/presets_components/PresetsContainer'
 
 export default function Presets({ presets }) {
 

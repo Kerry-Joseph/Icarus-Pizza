@@ -2,7 +2,7 @@ import '../../style/pages/home.scss'
 // --------------
 import { Link } from 'react-router-dom'
 // --------------
-import MenuItem from '../menu_item_components/MenuItem'
+import MenuItem from '../components/menu_item_components/MenuItem'
 
 export default function Home({ menuData, dealsData }) {
   return (

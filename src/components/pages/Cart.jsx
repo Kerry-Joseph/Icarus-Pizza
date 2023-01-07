@@ -1,7 +1,7 @@
 import '../../style/pages/cart.scss'
 // ---------------
-import Orders from "../cart_components/Orders"
-import Totals from "../cart_components/Totals"
+import Orders from "../components/cart_components/Orders"
+import Totals from "../components/cart_components/Totals"
 
 export default function Cart() {
 

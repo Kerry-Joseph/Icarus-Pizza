@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 // ----------------------
 import '../../style/pages/create-pizza.scss'
 // ----------------------
-import ToppingDiv from '../create_pizza_components/ToppingDiv'
-import PresetForm from '../create_pizza_components/PresetForm'
+import ToppingDiv from '../components/create_pizza_components/ToppingDiv'
+import PresetForm from '../components/create_pizza_components/PresetForm'
 
 export default function Pizza({ createPreset }){
   const [crustPrice, setCrustPrice] = useState(0)
