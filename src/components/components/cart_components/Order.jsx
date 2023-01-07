@@ -5,6 +5,7 @@ export default function Order({ parsedCart, item }) {
     localStorage.cart = JSON.stringify(cartWithoutDeletedItem)
   }
 
+  console.log(item.content)
   if(item.type === 'preset'){
     return (
       <div key={item.id} className='cart__order'>
@@ -27,7 +28,7 @@ export default function Order({ parsedCart, item }) {
     return(
       <div key={item.id} className='cart__order'>
         <h1>{item.name} Deal</h1>
-        <p>{item.content.join(', ')}</p>
+        <p>{item.content.join(' - ')}</p>
         <p className="order__price">{item.price}$</p>          
         <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
       </div>

@@ -36,7 +36,7 @@ export default function SelectedDeal({ deals, menu }) {
         return selectedDeal.price
       }
     })
-  })
+  }, [priceSplit, selectedDeal])
  
 
   const addDealToCart = () => {
