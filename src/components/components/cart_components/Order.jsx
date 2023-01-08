@@ -10,7 +10,7 @@ export default function Order({ parsedCart, item }) {
     return (
       <div key={item.id} className='cart__order'>
         <h1>{item.name} | Pizza Preset</h1>
-        <p>{item.content}</p>
+        <p>{item.content.replaceAll(', ', ' - ')}</p>
         <p className="order__price">{item.price}$</p>
         <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
       </div>
@@ -19,7 +19,7 @@ export default function Order({ parsedCart, item }) {
     return (
       <div key={item.id} className='cart__order'>
         <h1>Personal Pizza</h1>
-        <p>{item.content}</p>
+        <p>{item.content.replaceAll(', ', ' - ')}</p>
         <p className="order__price">{item.price}$</p>
         <button onClick={() => {deleteItem(item.id); window.location.reload()}}>delete</button>
       </div>

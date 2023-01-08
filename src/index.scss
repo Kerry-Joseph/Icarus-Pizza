@@ -3,6 +3,7 @@ body {
   font-family: 'Lora', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
   &::-webkit-scrollbar {
     background: #EAC435;
     border-left: black .1rem solid;
@@ -22,6 +23,10 @@ code {
 // media 
 $md: 768px;
 $lg: 1024px;
+
+button {
+  font-family: 'Lora', serif;
+}
 
 .main {
   display: flex;

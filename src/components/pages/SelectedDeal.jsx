@@ -185,7 +185,7 @@ export default function SelectedDeal({ deals, menu }) {
       <RedirectToCart />
 
       <button className="selected-deal__add-to-cart"  onClick={addDealToCart}>
-        add deal to cart
+        Add Deal To Cart
       </button>
 
     </div>

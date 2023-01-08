@@ -78,7 +78,6 @@ $icarus-yellow: #EAC435;
     
     &:hover {
       @include yellow-button;
-      margin-bottom: 1rem;
     }
 
     @media (min-width: $md) {
