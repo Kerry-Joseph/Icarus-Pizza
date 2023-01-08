@@ -57,13 +57,13 @@ $icarus-yellow: #EAC435;
     margin: 0rem 1rem;
     padding: 0rem 2rem;
     margin-bottom: 1rem;
-
-    @media (min-width: $md) {
-    margin-bottom: 0;
-    }
-
+   
     &:hover {
       @include yellow-button
+    }
+
+    @media (min-width: $md) {
+      margin-bottom: 2rem;
     }
   
   }
@@ -77,13 +77,18 @@ $icarus-yellow: #EAC435;
 
     
     &:hover {
-      @include yellow-button
+      @include yellow-button;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: $md) {
+      margin-bottom: 2rem;
     }
   
   }
 
   > div {
-    margin: 5rem 0;
+    margin: 2rem 0;
 
     @media (min-width: $md) {
       position: relative;

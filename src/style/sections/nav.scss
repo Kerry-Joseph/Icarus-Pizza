@@ -41,7 +41,14 @@ $icarus-yellow: #EAC435;
   img {
     height: 3.5rem;
     padding: .3rem;
-  };
+  }
+  
+  .nav__logo {
+    margin-right: 0;
+    @media (min-width: $lg) {
+      margin-right: 1.5rem;
+    }
+  }
 
   .nav__dropdown-button {
     background: $icarus-yellow;

@@ -48,7 +48,7 @@ export default function Nav() {
 
         <Link className='nav-link' to='cart'> 
           <li className='nav-dropdown--cart'>
-            {cartQuantity === 0 ? 'cart' :  cartQuantity}
+            {cartQuantity === 0 ? 'Cart' :  cartQuantity}
             <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart" />
           </li>
         </Link>
