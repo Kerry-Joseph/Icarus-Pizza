@@ -138,7 +138,7 @@ export default function Main() {
 
   return (
       <>
-         {Loading()}
+         {menuData && dealsData && presetsData ? Loaded() : Loading()}
       </>
     )
 
