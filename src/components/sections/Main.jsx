@@ -10,7 +10,8 @@ import SelectedDeal from '../pages/SelectedDeal'
 import CreatePizza from '../pages/CreatePizza'
 import Presets from '../pages/Presets'
 // --------------
-import '../../index.scss'
+import '../../style/sections/main.scss'
+import '../../style/sections/loading.scss'
 
 export default function Main() {
 
@@ -128,8 +129,8 @@ export default function Main() {
 
   function Loading() {
     return (
-     <main>
-      loading...
+     <main className='loading'>
+      <img src="spinning_pizza.gif" alt="" />
      </main>
     )
   }
@@ -137,7 +138,7 @@ export default function Main() {
 
   return (
       <>
-        {dealsData && menuData && presetsData ? Loaded() : Loading()}
+         {Loading()}
       </>
     )
 

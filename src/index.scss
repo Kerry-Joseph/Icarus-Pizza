@@ -21,11 +21,9 @@ code {
     monospace;
 }
 
-// media 
-$md: 768px;
-$lg: 1024px;
-
-.main {
+.App {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
 }
