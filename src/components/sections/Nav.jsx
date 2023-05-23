@@ -26,7 +26,6 @@ export default function Nav() {
     }
   }
 
-
   function Dropdown() {
     return (
       <ul className='nav-dropdown' ref={dropdown}>
@@ -49,7 +48,7 @@ export default function Nav() {
 
         <Link className='nav-link' to='cart'> 
           <li className='nav-dropdown--cart'>
-            {cartQuantity === 0 ? 'cart' :  cartQuantity}
+            {cartQuantity === 0 ? 'Cart' :  cartQuantity}
             <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="cart" />
           </li>
         </Link>
@@ -63,7 +62,6 @@ export default function Nav() {
     )
   }
 
-  
   return (
     <div className='outer-nav'>
       <nav className="nav">

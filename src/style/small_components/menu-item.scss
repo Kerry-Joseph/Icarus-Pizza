@@ -21,9 +21,20 @@ $icarus-yellow: #EAC435;
   justify-content: space-between;
   color: white;
 
+  @media (min-width: $md) {
+    margin: 1.5rem .3rem;
+  }
+  @media (min-width: $lg) {
+    margin: 1.5rem;
+  }
+
   h1 {
+    font-size: 1.5rem;
     margin: 1rem;
     text-shadow: 1px 1.5px 1px black;
+    @media (min-width: $lg) {
+      font-size: 1.8rem;
+    }
   }
   > p {
     font-weight: 600;
@@ -73,7 +84,7 @@ $icarus-yellow: #EAC435;
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  
   button {
     border: $icarus-red solid 1px;
     border-radius: .3rem;

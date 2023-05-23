@@ -34,29 +34,60 @@ $icarus-yellow: #EAC435;
   
   .menu-title {
     @include title;
+    margin-bottom: 0;
   }
 
-  >:nth-child(2){
-    text-decoration: none;
-    h1 {
-      @include red-button;
-      text-align: center;
-      margin: 2rem 1rem;
-      padding: 1rem 0;
-    }
+
+  .menu__first-section {
+      display: flex;
+      justify-content: space-around;
+      margin: 2rem 0;
+      flex-direction: column;
+
+      @media (min-width: $md) {
+        flex-direction: row;
+      }
   }
-  >:nth-child(3){
+
+  .menu__create-pizza {
     text-decoration: none;
-    h1 {
-      @include yellow-button;
-      text-align: center;
-      margin: 2rem 1rem;
-      padding: 1rem 0;
+  
+    @include red-button;
+    text-align: center;
+    margin: 0rem 1rem;
+    padding: 0rem 2rem;
+    margin-bottom: 1rem;
+   
+    &:hover {
+      @include yellow-button
     }
+
+    @media (min-width: $md) {
+      margin-bottom: 2rem;
+    }
+  
+  }
+
+  .menu__choose-preset {
+    text-decoration: none;
+    @include red-button;
+    text-align: center;
+    margin: 0rem 1rem;
+    padding: 0rem 2rem;
+
+    
+    &:hover {
+      @include yellow-button;
+    }
+
+    @media (min-width: $md) {
+      margin-bottom: 2rem;
+    }
+  
   }
 
   > div {
-    margin: 5rem 0;
+    margin: 2rem 0;
 
     @media (min-width: $md) {
       position: relative;
@@ -91,6 +122,10 @@ $icarus-yellow: #EAC435;
     >:nth-child(1){
       color: white;
       text-decoration: none;
+    }
+
+    &:hover {
+      @include yellow-button
     }
   
 }

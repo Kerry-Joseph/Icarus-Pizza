@@ -157,10 +157,10 @@ export default function Pizza({ createPreset }){
         </div>
       </section>
       <Link to={'/cart'} onClick={addPersonalPizzaToCart} className='create-pizza__add-to-cart'>
-        add to cart
+        Add To Cart
       </Link>
       <button className='create-pizza__open-create-preset' onClick={() => setPresetDiv(true)} style={presetDiv ? {display:'none'} : {display:'block'}}>
-        create preset
+        Create Preset
       </button>
 
       {presetSubmitted ? <PresetFormSubmitted /> : <PresetForm createPreset={createPreset} pizza={pizza} setPresetSubmitted={setPresetSubmitted} presetDiv={presetDiv}/>}

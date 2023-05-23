@@ -19,18 +19,20 @@ export default function Menu({ menu }) {
   
 
 
-  return (
+  return (  
     <main className='menu'>
     
       <h2 className='menu-title'>Menu</h2>
     
-      <Link to='/create-pizza' className='menu__create-pizza'>
-        <h1>Create Personal Pizza</h1>
-      </Link>
-    
-      <Link to='/pizza-presets' className='menu__choose-preset'>
-        <h1>Choose Pizza Preset</h1>
-      </Link>
+      <div className='menu__first-section'>
+        <Link to='/create-pizza' className='menu__create-pizza'>
+          <h1>Create Personal Pizza</h1>
+        </Link>
+      
+        <Link to='/pizza-presets' className='menu__choose-preset'>
+          <h1>Choose Pizza Preset</h1>
+        </Link>
+      </div>
 
       <div>
         <h3>Pizzas</h3>

@@ -89,20 +89,47 @@ $icarus-yellow: #EAC435;
   flex-direction: column;
   align-items: center;
 
+  .selected-deal-header {
+    width: 100%;
+  }
+
 
   .selected-deal-title {
     @include title;
-    margin-bottom: 2rem;
-    align-self: flex-start;
-  }
-
-  .selected-deal-sub-title {
-    @include title;
-    margin: 2rem 0;
-    width: 100%;
+    font-size: 2rem;
+    
+    margin: 2rem 0 0 0;
+    padding: 0 2rem;
+    font-weight: 900;
 
     @media (min-width: $md) {
       border-bottom: $icarus-red 4px solid;
+    }
+  }
+  
+  .selected-deal-description {
+    font-size: 1.6rem;
+    align-self: flex-start;
+    margin: 0 2rem;
+    font-weight: 500
+
+  }
+
+  .selected-deal-price {
+    margin: .1rem 2rem;
+    font-weight: 900;
+    font-size: 2rem
+  }
+
+  .selected-deal-instructions {
+    box-sizing: border-box;
+    @include title;
+    margin: 2rem 0;
+    width: 100%;
+    padding: 0 2rem;
+
+    @media (min-width: $md) {
+      border-bottom: $icarus-red 3px solid;
     }
   }
 

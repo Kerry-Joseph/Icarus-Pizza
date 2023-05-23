@@ -73,7 +73,7 @@ export default function MenuItem({ item }) {
     return (
       <div className='order-options' style={itemQuantity ? {display: 'flex'} : {display: 'none'}}>
         <button className='order-options--add-to-cart' onClick={addToCart}>
-          add to cart
+          Add To Cart
         </button>
         <span className='menu-item__price-in-options'>{Math.round((dynamicItemPrice * itemQuantity) * 100)/100}$</span>
         <div className='order-options--quantity-buttons'>

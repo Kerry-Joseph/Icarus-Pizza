@@ -41,16 +41,16 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
         { ...prev, [type] : false}
       ))
     }
-  }, [reqState.quantity])
+  }, [reqState.quantity, setItemsNeededForDeal, type])
 
 
   const userSelectedItemCartString = `${sizeState ? `${sizeState} ` : ''}${item.name}${itemQuantity > 1 ? ` x${itemQuantity}` : ''}`
 
 
   useEffect(() => {
-    if(itemsNeededForDeal[type] === true)
+    if(itemsNeededForDeal[type] === true && itemQuantity > 0 && !dealContent.includes(userSelectedItemCartString))
       dealContent.push(userSelectedItemCartString)
-  }, [itemsNeededForDeal[type]])
+  }, [itemsNeededForDeal, userSelectedItemCartString, dealContent, type, itemQuantity])
   
   
 
@@ -64,8 +64,7 @@ export default function MenuItemForDealPage({ item, setReqState, reqState, dealC
     }
   }
 
-
-
+  
 
   const reqIncrease = () => {
     setReqState(prev => (

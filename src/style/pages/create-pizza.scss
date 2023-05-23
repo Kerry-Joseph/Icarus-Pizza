@@ -160,11 +160,13 @@ $icarus-yellow: #EAC435;
       height: 2.5rem;
       border-radius: .4rem;
       padding: 0 .5rem;
+      font-family: 'Lora', serif;
     }
 
     // submit button
     :nth-child(2){
       @include yellow-button;
+      font-family: 'Lora', serif;
       margin: .5rem;
       font-weight: 600;
       font-size: 1.5rem;

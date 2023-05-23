@@ -5,8 +5,7 @@ import MenuItemForDealPage from './MenuItemForDealPage'
 // req === REQUIREMENT 
 export default function RequiredItemSelections({ selectedDealType, dealContent, selectedDeal, menu, setItemsNeededForDeal ,itemsNeededForDeal }){
   
-  const currentReqArr = selectedDeal.requirements.filter(req => req.itemType === selectedDealType)
-  const currentReq = currentReqArr[0]
+  const currentReq = selectedDeal.requirements.filter(req => req.itemType === selectedDealType)[0]
   
   const [reqState, setReqState] = useState(currentReq)
   

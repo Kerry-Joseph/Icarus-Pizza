@@ -36,7 +36,7 @@ export default function SelectedDeal({ deals, menu }) {
         return selectedDeal.price
       }
     })
-  })
+  }, [priceSplit, selectedDeal])
  
 
   const addDealToCart = () => {
@@ -93,16 +93,25 @@ export default function SelectedDeal({ deals, menu }) {
       return
     }
   }
+
   
   return (
     <div className="selected-deal" >
 
-      <h1 className="selected-deal-title">
-        {dealName} Deal
-        <span className="selected-deal__price">{dealPrice}$</span>
-      </h1>
+      <header className="selected-deal-header">
+        <div className="selected-deal-title">
+          {dealName} Deal
+        </div>
+        <h2 className="selected-deal-description">
+          {selectedDeal.description}
+        </h2>
+        <p className="selected-deal-price">
+          ${dealPrice}
+        </p>
+      </header>
+      
 
-      <h2 className="selected-deal-sub-title">
+      <h2 className="selected-deal-instructions">
         Select Deal Content
       </h2>
 
@@ -185,7 +194,7 @@ export default function SelectedDeal({ deals, menu }) {
       <RedirectToCart />
 
       <button className="selected-deal__add-to-cart"  onClick={addDealToCart}>
-        add deal to cart
+        Add Deal To Cart
       </button>
 
     </div>
