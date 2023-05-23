@@ -4,6 +4,8 @@ $lg: 1024px;
 .loading {
   display: flex;
   justify-content: center;
+  align-items: center;
+  min-height: 30rem;
     img {
       height: 10rem
     }
