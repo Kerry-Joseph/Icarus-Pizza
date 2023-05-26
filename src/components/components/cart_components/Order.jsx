@@ -5,7 +5,6 @@ export default function Order({ parsedCart, item }) {
     localStorage.cart = JSON.stringify(cartWithoutDeletedItem)
   }
 
-  console.log(item.content)
   if(item.type === 'preset'){
     return (
       <div key={item.id} className='cart__order'>

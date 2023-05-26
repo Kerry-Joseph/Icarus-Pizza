@@ -30,10 +30,8 @@ $icarus-yellow: #EAC435;
 .cart {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   max-width: 1280px;
-  max-height: 40rem;
-  margin-bottom: 2rem;
+  height: 100%;
 
   @media (min-width: $lg) {
     display: grid;
