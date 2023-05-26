@@ -28,4 +28,9 @@ button {
   font-family: 'Lora', serif;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 

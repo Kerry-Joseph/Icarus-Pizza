@@ -32,6 +32,8 @@ $icarus-yellow: #EAC435;
   flex-direction: column;
   flex-grow: 1;
   max-width: 1280px;
+  max-height: 40rem;
+  margin-bottom: 2rem;
 
   @media (min-width: $lg) {
     display: grid;
