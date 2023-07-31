@@ -1,9 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Totals({ parsedCart }) {
 
   const [deliveryFee, setDeliveryFee] = useState(0)
-
   
   const getSubtotal = () => {
     let subtotal = 0
@@ -25,13 +24,10 @@ export default function Totals({ parsedCart }) {
     }
   }
 
-
   const tax = Math.round((getSubtotal() * .0269) * 100)/100
   const subWithTax = (Math.round(tax * 100)/100) + getSubtotal()
-  const completeTotal = Math.round((subWithTax + deliveryFee) * 100)/100
+  const completeTotal = Math.round((parseInt(subWithTax) + deliveryFee) * 100)/100
   
-  
-
   const getTotal = (total) => {
     // adds 0s to price string if needed
     const splitTotal = total.toString().includes(".") ? total.toString().split('.') : false
@@ -46,7 +42,6 @@ export default function Totals({ parsedCart }) {
 
   }
   
-
   return (
     <div className="cart__total">
         <button 
