@@ -7,23 +7,19 @@ import MenuItem from '../components/menu_item_components/MenuItem'
 export default function Home({ menuData, dealsData }) {
   return (
     <div className='home'>
-
       <Link to='/menu' className='router-link home__order-now'>
           Order Now
       </Link>
-
-      <Link to='/deals/Barry B BBQ' className='router-link home__featured-deal' style={{background: `url(${dealsData[1].img})`}}>
+      <Link to='/deals/Barry B BBQ' className='router-link home__featured-deal' 
+      style={{background: `url(${dealsData[1].img})`}}>
           <h1>Featured Deal</h1>
           <h2>Barry B BBQ</h2>
           <p>Three 10pc Honey BBQ Wings, three Sides, and a bottle of water</p>
       </Link>
-
-      <section className='home_popular-items-section'>
-
+      <section className='home__popular-items-section'>
         <h1 className='popular-items__title'>
           Popular Items
         </h1>
-
         <div className='popular-items__content'>
           <MenuItem       
             item = {menuData[0]} />
@@ -36,9 +32,11 @@ export default function Home({ menuData, dealsData }) {
           <MenuItem             
             item = {menuData[4]} />
         </div>
-
       </section>
-
+      <Link to='/rewards' className='home__rewards-section' 
+      style={{background: 'url("/pizza-pattern.png")'}}>
+        <span>rewards</span>
+      </Link>
     </div>
   )
 }
