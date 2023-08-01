@@ -63,12 +63,14 @@ $icarus-yellow: #EAC435;
 
     h1 {
       margin: .5rem;
+      -webkit-text-stroke: .05rem black;
     };
     h2 {
       position: absolute;
       top: 3rem;
       left: 1rem;
       margin: .5rem;
+      -webkit-text-stroke: .05rem black;
     }
     p {
       font-size: 1.3rem;

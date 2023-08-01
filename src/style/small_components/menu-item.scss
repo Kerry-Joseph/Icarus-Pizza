@@ -9,7 +9,7 @@ $icarus-yellow: #EAC435;
 .menu-item {
   cursor: pointer;
   position: relative;
-  border: black .15rem solid;
+  border: black .1rem solid;
   border-radius: .4rem;
   background-size: cover;
   min-height: 13rem;
@@ -31,7 +31,8 @@ $icarus-yellow: #EAC435;
   h1 {
     font-size: 1.5rem;
     margin: 1rem;
-    text-shadow: 1px 1.5px 1px black;
+    -webkit-text-stroke: black .05rem;
+    letter-spacing: .05rem;
     @media (min-width: $lg) {
       font-size: 1.8rem;
     }
@@ -58,6 +59,7 @@ $icarus-yellow: #EAC435;
   right: .5rem;
   top: .2rem;
   font-size: 1.3rem;
+  -webkit-text-stroke: .01rem black;
   text-shadow: 1px 1.5px 1px black;
 }
 
