@@ -33,10 +33,11 @@ export default function Home({ menuData, dealsData }) {
             item = {menuData[4]} />
         </div>
       </section>
-      <Link to='/rewards' className='home__rewards-section' 
-      style={{background: 'url("/pizza-pattern.png")'}}>
-        <span>rewards</span>
-      </Link>
+      <section className='home__rewards-section' >
+        <Link to='/rewards' className='home__rewards-section-link' style={{background: 'url("/pizza-pattern.png")'}}>
+        </Link>
+        <span>Rewards</span>
+      </section>
     </div>
   )
 }
