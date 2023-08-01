@@ -1,3 +1,9 @@
+import "../../style/pages/rewards.scss"
+
 export default function Rewards() {
-  return <h1>rewards component</h1>
+  return (
+    <div className="rewards">
+      rewards
+    </div>
+  )
 }
