@@ -42,7 +42,7 @@ export default function Nav() {
           <li>Deals</li>
         </Link>
 
-        <Link className='nav-link' to=''>
+        <Link className='nav-link' to='/rewards'>
           <li>Rewards</li>
         </Link>
 

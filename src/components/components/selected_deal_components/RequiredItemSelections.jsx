@@ -17,7 +17,13 @@ export default function RequiredItemSelections({ selectedDealType, dealContent, 
   selectedDeal.requirements.forEach(req => {
     const menuItemsRequiedForDeal = menu.filter(item => item.itemType === req.itemType)
 
-    const cartStringForPizzaOrWings = `${req.size} ${req.name}${req.quantity > 1 ? ` x${req.quantity}` : ''}`
+    const wingSize = {
+      large : "10pc",
+      medium : "6pc",
+      small : "4pc"
+    }
+
+    const cartStringForPizzaOrWings = `${req.itemType === "wings" ? wingSize[req.size] : req.size} ${req.name}${req.quantity > 1 ? ` x${req.quantity}` : ''}`
     const cartStringForOtherItems = `${req.size ? `${req.size} ` : ''}${req.name}${req.quantity > 1 ? ` x${req.quantity}` : ''}`
 
     if(req.itemType !== selectedDealType){
